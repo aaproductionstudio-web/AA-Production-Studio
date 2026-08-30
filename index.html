@@ -136,6 +136,41 @@
       box-shadow: 0 0 25px rgba(102, 252, 241, 0.8);
     }
 
+    /* Social Media Links Section */
+    .social-section {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px dashed #2f3e46;
+    }
+    .social-section h3 {
+      color: #66fcf1;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #ffffff;
+      background: #11161d;
+      border: 1px solid #2f3e46;
+      transition: all 0.3s ease;
+    }
+    .social-btn.youtube:hover { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 10px rgba(255, 0, 0, 0.4); }
+    .social-btn.discord:hover { border-color: #5865f2; color: #5865f2; box-shadow: 0 0 10px rgba(88, 101, 242, 0.4); }
+    .social-btn.instagram:hover { border-color: #e1306c; color: #e1306c; box-shadow: 0 0 10px rgba(225, 48, 108, 0.4); }
+
     footer {
       margin-top: 30px;
       font-size: 0.9rem;
@@ -165,12 +200,13 @@
       h1 { font-size: 1.5rem; }
       .download-btn { width: 100%; }
       .req-table th, .req-table td { font-size: 0.8rem; padding: 8px; }
+      .social-links { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Glowing Top Banner -->
+  <!-- Top Banner -->
   <div class="banner-container">
     <img src="banner.jpg" alt="AA Production Studio Banner" class="banner-img">
   </div>
@@ -188,7 +224,7 @@
       <table class="req-table">
         <tr>
           <th>OS</th>
-          <td>Windows 7 / 10 / 11 (64-bit)</td>
+          <td>Windows 10 / 11 (64-bit)</td>
         </tr>
         <tr>
           <th>Processor</th>
@@ -209,10 +245,20 @@
       </table>
     </div>
 
-    <!-- Google Drive Download Link -->
+    <!-- Download Link -->
     <a href="https://drive.google.com/file/d/1-O27TnKqxG3m2ZmEtYWOTesRBk1x3sgH/view" target="_blank" class="download-btn">
       ⬇️ Spiderman Reloaded (PC)
     </a>
+
+    <!-- Social Media & Discord Section -->
+    <div class="social-section">
+      <h3>🌐 Join Our Community</h3>
+      <div class="social-links">
+        <a href="Coming Soon" target="_blank" class="social-btn youtube">▶️ YouTube</a>
+        <a href="https://discord.gg/ErCVt9JPHN" target="_blank" class="social-btn discord">💬 Discord</a>
+        <a href="Coming Soon" target="_blank" class="social-btn instagram">📸 Instagram</a>
+      </div>
+    </div>
 
     <footer>
       Created By <span>Abhishek & Abeer</span>
