@@ -164,6 +164,35 @@
       color: #66fcf1;
     }
 
+    /* Screenshots Gallery Section */
+    .screenshots-container {
+      margin-bottom: 15px;
+    }
+    .screenshots-title {
+      font-size: 0.85rem;
+      color: #66fcf1;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .screenshot-thumb {
+      width: 100%;
+      height: 65px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #2f3e46;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .screenshot-thumb:hover {
+      transform: scale(1.05);
+      border-color: #66fcf1;
+    }
+
     .req-box {
       background: rgba(17, 22, 29, 0.8);
       padding: 12px;
@@ -220,7 +249,42 @@
       box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
     }
 
-    /* Roadmap Timeline */
+    /* Modal / Lightbox Overlay */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .lightbox-modal img {
+      max-width: 85%;
+      max-height: 80vh;
+      border-radius: 10px;
+      border: 2px solid #66fcf1;
+      box-shadow: 0 0 30px rgba(102, 252, 241, 0.5);
+    }
+    .close-modal {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      color: #fff;
+      font-size: 35px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .close-modal:hover {
+      color: #ff9900;
+    }
+
+    /* Roadmap Timeline & Dev Roles */
     .extra-section {
       max-width: 900px;
       width: 100%;
@@ -357,6 +421,15 @@
             <div class="stat-pill">👥 <span>Downloads: <strong>1.2k+</strong></span></div>
           </div>
 
+          <div class="screenshots-container">
+            <div class="screenshots-title">📸 Gameplay In-Game Shots (Click to Zoom):</div>
+            <div class="screenshots-grid">
+              <img src="banner.jpg" alt="Screenshot 1" class="screenshot-thumb" onclick="openLightbox(this.src); event.stopPropagation();">
+              <img src="banner.jpg" alt="Screenshot 2" class="screenshot-thumb" onclick="openLightbox(this.src); event.stopPropagation();">
+              <img src="banner.jpg" alt="Screenshot 3" class="screenshot-thumb" onclick="openLightbox(this.src); event.stopPropagation();">
+            </div>
+          </div>
+
           <div class="req-box">
             <strong>Min Requirements:</strong><br>
             Win 10/11 | 4GB RAM | i3 Proc | 1.5GB Space
@@ -432,7 +505,23 @@
     </footer>
   </div>
 
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+    <span class="close-modal">&times;</span>
+    <img id="lightboxImg" src="" alt="Screenshot Full View">
+  </div>
+
   <script>
+    function openLightbox(src) {
+      const modal = document.getElementById('lightboxModal');
+      const modalImg = document.getElementById('lightboxImg');
+      modalImg.src = src;
+      modal.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').style.display = 'none';
+    }
+
     function openGame(selectedCard) {
       const allCards = document.querySelectorAll('.card');
       const grid = document.getElementById('gamesGrid');
