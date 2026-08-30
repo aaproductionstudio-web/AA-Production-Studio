@@ -22,7 +22,7 @@
       padding-bottom: 40px;
     }
 
-    /* Top Banner (YouTube Style) with Glow Animation */
+    /* Top Banner */
     .banner-container {
       width: 100%;
       max-width: 800px;
@@ -43,7 +43,7 @@
       box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
     }
 
-    /* Main Content Card with Entrance Animation */
+    /* Main Content Card */
     .card {
       background: #1f2833;
       padding: 30px 25px;
@@ -63,7 +63,6 @@
       text-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
     }
 
-    /* Animated Badge */
     .badge {
       background: #ff9900;
       color: #000;
@@ -82,7 +81,41 @@
       line-height: 1.6;
     }
 
-    /* Glowing Download Button with Smooth Hover */
+    /* System Requirements Section */
+    .req-section {
+      margin-top: 30px;
+      text-align: left;
+      background: #11161d;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #2f3e46;
+    }
+    .req-title {
+      color: #66fcf1;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      text-align: center;
+      border-bottom: 1px solid #2f3e46;
+      padding-bottom: 8px;
+    }
+    .req-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .req-table th, .req-table td {
+      padding: 10px;
+      border-bottom: 1px solid #222d37;
+    }
+    .req-table th {
+      color: #ff9900;
+      width: 30%;
+    }
+    .req-table td {
+      color: #c5c6c7;
+    }
+
+    /* Download Button */
     .download-btn {
       display: inline-block;
       margin-top: 25px;
@@ -126,11 +159,12 @@
       100% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0); }
     }
 
-    /* Mobile Responsive View */
+    /* Mobile View */
     @media (max-width: 480px) {
       .banner-img { height: 130px; }
       h1 { font-size: 1.5rem; }
       .download-btn { width: 100%; }
+      .req-table th, .req-table td { font-size: 0.8rem; padding: 8px; }
     }
   </style>
 </head>
@@ -148,7 +182,34 @@
 
     <p>We are creating awesome gaming experiences. Download our PC game below!</p>
 
-    <!-- Google Drive Download Button -->
+    <!-- System Requirements Table -->
+    <div class="req-section">
+      <div class="req-title">⚙️ Minimum System Requirements</div>
+      <table class="req-table">
+        <tr>
+          <th>OS</th>
+          <td>Windows 7 / 10 / 11 (64-bit)</td>
+        </tr>
+        <tr>
+          <th>Processor</th>
+          <td>Intel Core i3 / AMD Ryzen 3</td>
+        </tr>
+        <tr>
+          <th>RAM</th>
+          <td>4 GB RAM</td>
+        </tr>
+        <tr>
+          <th>Graphics</th>
+          <td>Intel HD 4000 / NVIDIA GT 710 or higher</td>
+        </tr>
+        <tr>
+          <th>Storage</th>
+          <td>1.5 GB Available Space</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Google Drive Download Link -->
     <a href="https://drive.google.com/file/d/1-O27TnKqxG3m2ZmEtYWOTesRBk1x3sgH/view" target="_blank" class="download-btn">
       ⬇️ Spiderman Reloaded (PC)
     </a>
