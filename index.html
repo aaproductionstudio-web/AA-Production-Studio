@@ -193,14 +193,23 @@
       border-color: #66fcf1;
     }
 
-    .req-box {
-      background: rgba(17, 22, 29, 0.8);
-      padding: 12px;
+    /* Specs Check Button */
+    .specs-btn {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      background: rgba(17, 22, 29, 0.9);
+      border: 1px dashed #66fcf1;
+      color: #66fcf1;
       border-radius: 8px;
-      border: 1px solid #2f3e46;
-      font-size: 0.8rem;
-      color: #aaa;
-      margin-bottom: 20px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .specs-btn:hover {
+      background: rgba(102, 252, 241, 0.15);
+      box-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
     }
 
     .download-btn {
@@ -249,7 +258,70 @@
       box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
     }
 
-    /* Modal / Lightbox Overlay */
+    /* Modals Setup */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-box {
+      background: #11161d;
+      border: 1px solid #66fcf1;
+      box-shadow: 0 0 25px rgba(102, 252, 241, 0.4);
+      border-radius: 12px;
+      padding: 25px;
+      max-width: 500px;
+      width: 90%;
+      text-align: left;
+      position: relative;
+    }
+    .modal-header {
+      font-size: 1.2rem;
+      color: #66fcf1;
+      margin-bottom: 15px;
+      font-weight: bold;
+      border-bottom: 1px solid #2f3e46;
+      padding-bottom: 8px;
+    }
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+      font-size: 0.85rem;
+    }
+    .specs-table th, .specs-table td {
+      padding: 8px;
+      border-bottom: 1px solid #1f2833;
+    }
+    .specs-table th {
+      color: #ff9900;
+      text-align: left;
+    }
+    .specs-table td {
+      color: #c5c6c7;
+    }
+    .close-specs {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: #aaa;
+      font-size: 22px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .close-specs:hover {
+      color: #ff3366;
+    }
+
+    /* Lightbox Modal */
     .lightbox-modal {
       display: none;
       position: fixed;
@@ -262,7 +334,6 @@
       backdrop-filter: blur(10px);
       align-items: center;
       justify-content: center;
-      flex-direction: column;
     }
     .lightbox-modal img {
       max-width: 85%;
@@ -278,13 +349,9 @@
       color: #fff;
       font-size: 35px;
       cursor: pointer;
-      transition: color 0.2s;
-    }
-    .close-modal:hover {
-      color: #ff9900;
     }
 
-    /* Roadmap Timeline & Dev Roles */
+    /* Roadmap Timeline & Team */
     .extra-section {
       max-width: 900px;
       width: 100%;
@@ -335,6 +402,7 @@
       font-size: 0.8rem;
     }
 
+    /* Social Section */
     .social-section {
       margin-top: 40px;
       max-width: 900px;
@@ -361,8 +429,23 @@
     .social-btn.discord:hover { border-color: #5865f2; color: #5865f2; box-shadow: 0 0 15px rgba(88, 101, 242, 0.5); }
     .social-btn.instagram:hover { border-color: #e1306c; color: #e1306c; box-shadow: 0 0 15px rgba(225, 48, 108, 0.5); }
 
+    /* Unique Visitor Counter */
+    .visitor-counter {
+      margin-top: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #c5c6c7;
+    }
+    .visitor-counter img {
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(102, 252, 241, 0.4);
+    }
+
     footer {
-      margin-top: 40px;
+      margin-top: 30px;
       font-size: 0.9rem;
       color: #666;
     }
@@ -422,7 +505,7 @@
           </div>
 
           <div class="screenshots-container">
-            <div class="screenshots-title">📸 Gameplay In-Game Shots (Click to Zoom):</div>
+            <div class="screenshots-title">📸 Gameplay In-Game Shots:</div>
             <div class="screenshots-grid">
               <img src="banner.jpg" alt="Screenshot 1" class="screenshot-thumb" onclick="openLightbox(this.src); event.stopPropagation();">
               <img src="banner.jpg" alt="Screenshot 2" class="screenshot-thumb" onclick="openLightbox(this.src); event.stopPropagation();">
@@ -430,10 +513,9 @@
             </div>
           </div>
 
-          <div class="req-box">
-            <strong>Min Requirements:</strong><br>
-            Win 10/11 | 4GB RAM | i3 Proc | 1.5GB Space
-          </div>
+          <button class="specs-btn" onclick="openSpecsModal('Project Alpha', 'Win 10/11', 'Intel Core i3 6th Gen', '4 GB', 'Intel HD 620', 'Win 11', 'Intel Core i5 / Ryzen 5', '8 GB', 'GTX 1050 / RX 560'); event.stopPropagation();">
+            ⚙️ Can I Run It? (System Specs)
+          </button>
         </div>
         <a href="APNA_GOOGLE_DRIVE_LINK_HERE" target="_blank" class="download-btn" onclick="event.stopPropagation();">
           ⬇️ Download Game
@@ -453,10 +535,9 @@
             <div class="stat-pill">🎯 <span>Genre: <strong>Action / Sci-Fi</strong></span></div>
           </div>
 
-          <div class="req-box">
-            <strong>Status:</strong><br>
-            Level Design & Gameplay Mechanics Phase
-          </div>
+          <button class="specs-btn" onclick="openSpecsModal('Project Beta', 'Win 10/11 64-bit', 'Intel Core i5 8th Gen', '8 GB', 'GTX 1060 (6GB)', 'Win 11 64-bit', 'Intel Core i7 / Ryzen 7', '16 GB', 'RTX 3060 / RX 6600'); event.stopPropagation();">
+            ⚙️ Target System Specs
+          </button>
         </div>
         <a href="#" class="download-btn disabled" onclick="event.stopPropagation();">
           🔒 Coming Soon
@@ -492,6 +573,11 @@
       </div>
     </div>
 
+    <div class="visitor-counter">
+      <span>👁️ Studio Visitors:</span>
+      <img src="https://api.visitorbadge.io/api/visitors?pageId=aaproductionstudio.github.io&labelColor=%2311161d&countColor=%2366fcf1&unique=true" alt="Visitors Count" />
+    </div>
+
     <div class="social-section">
       <div class="social-links">
         <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-btn youtube">▶️ YouTube</a>
@@ -505,12 +591,71 @@
     </footer>
   </div>
 
+  <div class="modal-overlay" id="specsModal" onclick="closeSpecsModal()">
+    <div class="modal-box" onclick="event.stopPropagation();">
+      <span class="close-specs" onclick="closeSpecsModal()">&times;</span>
+      <div class="modal-header" id="specsGameTitle">System Requirements</div>
+      
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Minimum</th>
+            <th>Recommended</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OS</td>
+            <td id="minOS">-</td>
+            <td id="recOS">-</td>
+          </tr>
+          <tr>
+            <td>Processor</td>
+            <td id="minCPU">-</td>
+            <td id="recCPU">-</td>
+          </tr>
+          <tr>
+            <td>RAM</td>
+            <td id="minRAM">-</td>
+            <td id="recRAM">-</td>
+          </tr>
+          <tr>
+            <td>Graphics</td>
+            <td id="minGPU">-</td>
+            <td id="recGPU">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
     <span class="close-modal">&times;</span>
     <img id="lightboxImg" src="" alt="Screenshot Full View">
   </div>
 
   <script>
+    /* System Specs Modal Control */
+    function openSpecsModal(title, minOS, minCPU, minRAM, minGPU, recOS, recCPU, recRAM, recGPU) {
+      document.getElementById('specsGameTitle').innerText = '⚙️ ' + title + ' Requirements';
+      document.getElementById('minOS').innerText = minOS;
+      document.getElementById('minCPU').innerText = minCPU;
+      document.getElementById('minRAM').innerText = minRAM;
+      document.getElementById('minGPU').innerText = minGPU;
+      
+      document.getElementById('recOS').innerText = recOS;
+      document.getElementById('recCPU').innerText = recCPU;
+      document.getElementById('recRAM').innerText = recRAM;
+      document.getElementById('recGPU').innerText = recGPU;
+
+      document.getElementById('specsModal').style.display = 'flex';
+    }
+
+    function closeSpecsModal() {
+      document.getElementById('specsModal').style.display = 'none';
+    }
+
     function openLightbox(src) {
       const modal = document.getElementById('lightboxModal');
       const modalImg = document.getElementById('lightboxImg');
@@ -556,6 +701,7 @@
       sectionTitle.innerText = '🎮 Our Games';
     }
 
+    /* Particle Animation */
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
 
