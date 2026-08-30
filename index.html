@@ -164,7 +164,7 @@
       color: #66fcf1;
     }
 
-    /* Screenshots Gallery Section */
+    /* Screenshots Section */
     .screenshots-container {
       margin-bottom: 15px;
     }
@@ -193,7 +193,7 @@
       border-color: #66fcf1;
     }
 
-    /* Specs Check Button */
+    /* Specs Button */
     .specs-btn {
       width: 100%;
       padding: 8px;
@@ -210,6 +210,102 @@
     .specs-btn:hover {
       background: rgba(102, 252, 241, 0.15);
       box-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
+    }
+
+    /* Review & Rating Section */
+    .review-section {
+      background: rgba(17, 22, 29, 0.85);
+      border: 1px solid #2f3e46;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .review-section h4 {
+      color: #66fcf1;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+    .star-rating {
+      display: flex;
+      gap: 6px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .star-rating .star {
+      color: #444;
+      transition: color 0.2s ease;
+    }
+    .star-rating .star.active {
+      color: #ff9900;
+      text-shadow: 0 0 8px rgba(255, 153, 0, 0.6);
+    }
+    .review-input-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .review-name-input {
+      width: 35%;
+      background: rgba(11, 12, 16, 0.9);
+      border: 1px solid #2f3e46;
+      border-radius: 6px;
+      padding: 8px;
+      color: #fff;
+      font-size: 0.8rem;
+    }
+    .review-input {
+      width: 65%;
+      background: rgba(11, 12, 16, 0.9);
+      border: 1px solid #2f3e46;
+      border-radius: 6px;
+      padding: 8px;
+      color: #fff;
+      font-size: 0.8rem;
+    }
+    .review-name-input:focus, .review-input:focus {
+      outline: none;
+      border-color: #66fcf1;
+    }
+    .submit-review-btn {
+      background: #ff9900;
+      color: #000;
+      border: none;
+      padding: 8px 14px;
+      font-weight: bold;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+    }
+    .submit-review-btn:hover {
+      background: #ffaa33;
+      box-shadow: 0 0 10px rgba(255, 153, 0, 0.4);
+    }
+    .review-list {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+    .single-review {
+      background: rgba(11, 12, 16, 0.7);
+      border-left: 3px solid #66fcf1;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: #c5c6c7;
+    }
+    .single-review strong {
+      color: #fff;
+    }
+    .single-review .review-stars {
+      color: #ff9900;
+      margin-left: 5px;
     }
 
     .download-btn {
@@ -429,21 +525,6 @@
     .social-btn.discord:hover { border-color: #5865f2; color: #5865f2; box-shadow: 0 0 15px rgba(88, 101, 242, 0.5); }
     .social-btn.instagram:hover { border-color: #e1306c; color: #e1306c; box-shadow: 0 0 15px rgba(225, 48, 108, 0.5); }
 
-    /* Unique Visitor Counter */
-    .visitor-counter {
-      margin-top: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-size: 0.85rem;
-      color: #c5c6c7;
-    }
-    .visitor-counter img {
-      border-radius: 4px;
-      box-shadow: 0 0 10px rgba(102, 252, 241, 0.4);
-    }
-
     footer {
       margin-top: 30px;
       font-size: 0.9rem;
@@ -516,6 +597,35 @@
           <button class="specs-btn" onclick="openSpecsModal('Project Alpha', 'Win 10/11', 'Intel Core i3 6th Gen', '4 GB', 'Intel HD 620', 'Win 11', 'Intel Core i5 / Ryzen 5', '8 GB', 'GTX 1050 / RX 560'); event.stopPropagation();">
             ⚙️ Can I Run It? (System Specs)
           </button>
+
+          <div class="review-section" onclick="event.stopPropagation();">
+            <h4>⭐ Player Reviews & Rating</h4>
+            
+            <div class="star-rating" id="starContainer">
+              <span class="star active" onclick="setRating(1)">★</span>
+              <span class="star active" onclick="setRating(2)">★</span>
+              <span class="star active" onclick="setRating(3)">★</span>
+              <span class="star active" onclick="setRating(4)">★</span>
+              <span class="star active" onclick="setRating(5)">★</span>
+            </div>
+
+            <div class="review-input-row">
+              <input type="text" id="userNameInput" class="review-name-input" placeholder="Your Name">
+              <input type="text" id="userReviewText" class="review-input" placeholder="Feedback or bug report...">
+            </div>
+            
+            <button class="submit-review-btn" onclick="submitReview()">Submit Review</button>
+
+            <div class="review-list" id="reviewsContainer">
+              <div class="single-review">
+                <strong>Abeer:</strong> Smooth graphics & solid 60 FPS!<span class="review-stars">★★★★★</span>
+              </div>
+              <div class="single-review">
+                <strong>PlayerOne:</strong> Great combat mechanics, waiting for update.<span class="review-stars">★★★★☆</span>
+              </div>
+            </div>
+          </div>
+
         </div>
         <a href="APNA_GOOGLE_DRIVE_LINK_HERE" target="_blank" class="download-btn" onclick="event.stopPropagation();">
           ⬇️ Download Game
@@ -571,11 +681,6 @@
           <span>Game Designer / 3D Modeler</span>
         </div>
       </div>
-    </div>
-
-    <div class="visitor-counter">
-      <span>👁️ Studio Visitors:</span>
-      <img src="https://api.visitorbadge.io/api/visitors?pageId=aaproductionstudio.github.io&labelColor=%2311161d&countColor=%2366fcf1&unique=true" alt="Visitors Count" />
     </div>
 
     <div class="social-section">
@@ -636,7 +741,46 @@
   </div>
 
   <script>
-    /* System Specs Modal Control */
+    /* Rating & Review Script */
+    let currentRating = 5;
+
+    function setRating(rating) {
+      currentRating = rating;
+      const stars = document.querySelectorAll('#starContainer .star');
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+
+    function submitReview() {
+      const nameInput = document.getElementById('userNameInput');
+      const textInput = document.getElementById('userReviewText');
+      const name = nameInput.value.trim() || 'Player';
+      const text = textInput.value.trim();
+
+      if (!text) {
+        alert('Please enter your feedback or review!');
+        return;
+      }
+
+      const reviewsContainer = document.getElementById('reviewsContainer');
+      const newReview = document.createElement('div');
+      newReview.className = 'single-review';
+      
+      let starStr = '★'.repeat(currentRating) + '☆'.repeat(5 - currentRating);
+      newReview.innerHTML = `<strong>${name}:</strong> ${text}<span class="review-stars">${starStr}</span>`;
+
+      reviewsContainer.prepend(newReview);
+
+      textInput.value = '';
+      nameInput.value = '';
+    }
+
+    /* System Specs Modal */
     function openSpecsModal(title, minOS, minCPU, minRAM, minGPU, recOS, recCPU, recRAM, recGPU) {
       document.getElementById('specsGameTitle').innerText = '⚙️ ' + title + ' Requirements';
       document.getElementById('minOS').innerText = minOS;
@@ -656,6 +800,7 @@
       document.getElementById('specsModal').style.display = 'none';
     }
 
+    /* Lightbox Modal */
     function openLightbox(src) {
       const modal = document.getElementById('lightboxModal');
       const modalImg = document.getElementById('lightboxImg');
@@ -667,6 +812,7 @@
       document.getElementById('lightboxModal').style.display = 'none';
     }
 
+    /* Game View State Control */
     function openGame(selectedCard) {
       const allCards = document.querySelectorAll('.card');
       const grid = document.getElementById('gamesGrid');
@@ -701,7 +847,7 @@
       sectionTitle.innerText = '🎮 Our Games';
     }
 
-    /* Particle Animation */
+    /* Particle Background Engine */
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
 
