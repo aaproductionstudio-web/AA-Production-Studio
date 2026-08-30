@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Box Runner Game</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    canvas {
+      background: #000;
+      border: 2px solid #00ffcc;
+      display: block;
+      margin: 20px auto;
+    }
+    .btn-container {
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px;
+      cursor: pointer;
+      background: #00ffcc;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>AA Production Studio - Test Game</h1>
+  <p>Keyboard Arrow Keys ya niche wale buttons se box ko move karein:</p>
+
+  <canvas id="gameCanvas" width="400" height="300"></canvas>
+
+  <div class="btn-container">
+    <button onclick="move('up')">⬆️ Up</button><br>
+    <button onclick="move('left')">⬅️ Left</button>
+    <button onclick="move('down')">⬇️ Down</button>
+    <button onclick="move('right')">➡️ Right</button>
+  </div>
+
+  <br><br>
+  <a href="index.html" style="color: #00ffcc; text-decoration: none; font-size: 18px;">← Back to Home Page</a>
+
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let player = { x: 180, y: 130, size: 40, speed: 15, color: "#00ffcc" };
+
+    function drawPlayer() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = player.color;
+      ctx.fillRect(player.x, player.y, player.size, player.size);
+    }
+
+    function move(dir) {
+      if (dir === 'left' && player.x > 0) player.x -= player.speed;
+      if (dir === 'right' && player.x < canvas.width - player.size) player.x += player.speed;
+      if (dir === 'up' && player.y > 0) player.y -= player.speed;
+      if (dir === 'down' && player.y < canvas.height - player.size) player.y += player.speed;
+      drawPlayer();
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") move('left');
+      if (e.key === "ArrowRight") move('right');
+      if (e.key === "ArrowUp") move('up');
+      if (e.key === "ArrowDown") move('down');
+    });
+
+    drawPlayer();
+  </script>
+
+</body>
+</html>
