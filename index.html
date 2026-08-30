@@ -4,16 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- SEO & Social Meta Tags -->
+  <!-- SEO & Meta Tags -->
   <meta name="description" content="AA Production Studio - Official Gaming Portal by Abhishek & Abeer.">
   <meta property="og:title" content="AA Production Studio">
   <meta property="og:description" content="Download PC and Android Games by AA Production Studio.">
-  <meta property="og:image" content="banner.jpg">
-  <!-- <meta name="google-site-verification" content="YAHAN_APNA_GOOGLE_CODE_PASTE_KAREIN" /> -->
 
   <title>AA Production Studio</title>
 
-  <!-- Font Awesome Icons for Social Media Icons -->
+  <!-- Font Awesome Icons for Social Media -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -40,7 +38,7 @@
       width: 100%;
       height: 100%;
       z-index: 0;
-      pointer-events: none;
+      pointer-events: none; /* Allows clicks to pass through */
     }
 
     /* Top Navigation Header */
@@ -53,7 +51,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 100;
+      z-index: 500; /* High Z-index to always stay clickable */
       background: linear-gradient(to bottom, rgba(5, 7, 9, 0.95), transparent);
     }
 
@@ -67,7 +65,7 @@
     }
 
     .menu-trigger {
-      background: rgba(11, 12, 16, 0.7);
+      background: rgba(11, 12, 16, 0.85);
       border: 1.5px solid #66fcf1;
       color: #66fcf1;
       font-size: 0.95rem;
@@ -78,6 +76,8 @@
       backdrop-filter: blur(8px);
       box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
       transition: all 0.3s ease;
+      position: relative;
+      z-index: 501;
     }
 
     .menu-trigger:hover {
@@ -87,7 +87,7 @@
       transform: scale(1.05);
     }
 
-    /* Fullscreen Clean Hero Section with Background Video */
+    /* Hero Section */
     .hero-container {
       position: relative;
       width: 100%;
@@ -108,6 +108,7 @@
       object-fit: cover;
       z-index: 1;
       filter: brightness(0.45);
+      pointer-events: none;
     }
 
     .hero-overlay {
@@ -145,6 +146,8 @@
       letter-spacing: 1px;
       box-shadow: 0 0 20px rgba(102, 252, 241, 0.5);
       transition: all 0.3s ease;
+      position: relative;
+      z-index: 5;
     }
 
     .explore-btn:hover {
@@ -161,11 +164,11 @@
       right: -360px;
       width: 320px;
       height: 100%;
-      background: rgba(5, 7, 9, 0.95);
+      background: rgba(5, 7, 9, 0.98);
       backdrop-filter: blur(15px);
       border-left: 2px solid #66fcf1;
       box-shadow: -10px 0 35px rgba(102, 252, 241, 0.25);
-      z-index: 200;
+      z-index: 1000;
       transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
       padding: 40px 25px;
       display: flex;
@@ -217,6 +220,7 @@
       font-weight: 600;
       transition: all 0.3s ease;
       display: block;
+      cursor: pointer;
     }
 
     .nav-list a:hover {
@@ -245,6 +249,7 @@
       font-size: 1.2rem;
       text-decoration: none;
       transition: all 0.3s ease;
+      cursor: pointer;
     }
 
     .drawer-social-btn:hover {
@@ -255,10 +260,10 @@
     .drawer-social-btn.youtube:hover { background: #FF0000; border-color: #FF0000; box-shadow: 0 0 15px #FF0000; }
     .drawer-social-btn.instagram:hover { background: #E1306C; border-color: #E1306C; box-shadow: 0 0 15px #E1306C; }
 
-    /* Content Area (Catalog & Game Info) */
+    /* Content Area (Catalog & Games) */
     .main-content {
       position: relative;
-      z-index: 1;
+      z-index: 10;
       display: none;
       flex-direction: column;
       align-items: center;
@@ -322,7 +327,7 @@
       box-shadow: 0 0 15px #66fcf1;
     }
 
-    /* Glowing Game Cards Layout */
+    /* Cards Grid */
     .games-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
@@ -524,6 +529,7 @@
       box-shadow: 0 0 15px rgba(102, 252, 241, 0.5);
       transition: all 0.3s ease;
       letter-spacing: 0.5px;
+      cursor: pointer;
     }
 
     .download-btn:hover {
@@ -535,7 +541,7 @@
     .modal-overlay {
       display: none;
       position: fixed;
-      z-index: 1000;
+      z-index: 2000;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.85);
       align-items: center; justify-content: center;
@@ -585,7 +591,7 @@
     .lightbox-modal {
       display: none;
       position: fixed;
-      z-index: 999;
+      z-index: 2000;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.92);
       align-items: center; justify-content: center;
@@ -599,14 +605,16 @@
       box-shadow: 0 0 30px rgba(102, 252, 241, 0.5);
     }
 
-    /* Rockstar Style Footer with Social Icons */
+    /* Rockstar Style Footer - Fixed Z-Index & Clicks */
     footer {
       width: 100%;
       margin-top: 50px;
       padding: 30px 20px;
-      background: rgba(5, 7, 9, 0.95);
+      background: rgba(5, 7, 9, 0.98);
       border-top: 1px solid rgba(102, 252, 241, 0.2);
       text-align: center;
+      position: relative;
+      z-index: 500; /* Priority over hero & background */
     }
 
     .footer-socials {
@@ -614,6 +622,8 @@
       justify-content: center;
       gap: 20px;
       margin-bottom: 15px;
+      position: relative;
+      z-index: 501;
     }
 
     .footer-socials a {
@@ -626,9 +636,12 @@
       width: 45px;
       height: 45px;
       border-radius: 50%;
-      background: rgba(11, 12, 16, 0.8);
+      background: rgba(11, 12, 16, 0.9);
       border: 1px solid #1f2833;
       text-decoration: none;
+      position: relative;
+      z-index: 502;
+      cursor: pointer;
     }
 
     .footer-socials a:hover {
@@ -682,25 +695,25 @@
     
     <div class="menu-heading">Navigation</div>
     <ul class="nav-list">
-      <li><a href="#" onclick="openHomeScreen()">🏠 Home Screen</a></li>
-      <li><a href="#" onclick="openCatalogView()">🎮 All Games Catalog</a></li>
+      <li><a onclick="openHomeScreen()">🏠 Home Screen</a></li>
+      <li><a onclick="openCatalogView()">🎮 All Games Catalog</a></li>
     </ul>
 
     <div class="menu-heading">Direct Games</div>
     <ul class="nav-list">
-      <li><a href="#" onclick="openSingleGame('pc')">⚡ Project Alpha (PC)</a></li>
-      <li><a href="#" onclick="openSingleGame('upcoming')">🔥 Project Beta (Upcoming)</a></li>
+      <li><a onclick="openSingleGame('pc')">⚡ Project Alpha (PC)</a></li>
+      <li><a onclick="openSingleGame('upcoming')">🔥 Project Beta (Upcoming)</a></li>
     </ul>
 
     <div class="menu-heading">Community</div>
     <div class="drawer-socials">
-      <a href="APNA_DISCORD_LINK" target="_blank" class="drawer-social-btn discord" aria-label="Discord"><i class="fab fa-discord"></i></a>
-      <a href="APNA_YOUTUBE_LINK" target="_blank" class="drawer-social-btn youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-      <a href="APNA_INSTAGRAM_LINK" target="_blank" class="drawer-social-btn instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://discord.com" target="_blank" class="drawer-social-btn discord" aria-label="Discord"><i class="fab fa-discord"></i></a>
+      <a href="https://youtube.com" target="_blank" class="drawer-social-btn youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://instagram.com" target="_blank" class="drawer-social-btn instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     </div>
   </div>
 
-  <!-- Rockstar-Style Hero Screen with Live Background Video -->
+  <!-- Hero Screen -->
   <div class="hero-container" id="heroScreen">
     <video class="hero-bg-media" autoplay loop muted playsinline>
       <source src="trailer.mp4" type="video/mp4">
@@ -727,7 +740,7 @@
         </div>
       </div>
 
-      <!-- Cards Container -->
+      <!-- Cards Grid -->
       <div class="games-grid" id="gamesGrid">
         
         <!-- GAME 1 (PC) -->
@@ -752,7 +765,7 @@
 
             <button class="specs-btn" onclick="openSpecsModal('Project Alpha', 'Win 10/11', 'Core i3 6th Gen', '4 GB', 'Intel HD 620', 'Win 11', 'Core i5', '8 GB', 'GTX 1050')">⚙️ System Specs</button>
 
-            <!-- Reviews System -->
+            <!-- Review System -->
             <div class="review-section">
               <h4 style="color:#66fcf1; font-size:0.85rem; margin-bottom:6px; text-shadow:0 0 6px rgba(102,252,241,0.4);">⭐ Player Reviews</h4>
               <div class="star-rating" id="starContainer">
@@ -761,4 +774,222 @@
                 <span class="star active" onclick="setRating(3)">★</span>
                 <span class="star active" onclick="setRating(4)">★</span>
                 <span class="star active" onclick="setRating(5)">★</span>
-  
+              </div>
+              <div class="review-input-row">
+                <input type="text" id="userNameInput" class="review-name-input" placeholder="Name">
+                <input type="text" id="userReviewText" class="review-input" placeholder="Review message...">
+              </div>
+              <button class="submit-review-btn" onclick="submitReview()">Submit Review</button>
+
+              <div class="review-list" id="reviewsContainer">
+                <div class="single-review"><strong>Abeer:</strong> Smooth graphics & solid FPS! <span style="color:#ff9900;">★★★★★</span></div>
+              </div>
+            </div>
+
+          </div>
+          <a href="https://drive.google.com" target="_blank" class="download-btn">⬇️ Download Game</a>
+        </div>
+
+        <!-- GAME 2 (Upcoming) -->
+        <div class="card" data-category="upcoming">
+          <div>
+            <div class="badge" style="background:#ff3366; color:#fff; box-shadow: 0 0 12px rgba(255, 51, 102, 0.6);">COMING SOON</div>
+            <div class="game-title">Project Beta (Upcoming)</div>
+            <p style="color:#c5c6c7; font-size:0.9rem; margin-bottom:12px;">Next-gen story-driven game in active development.</p>
+            
+            <div class="stats-grid">
+              <div class="stat-pill">⚡ Status: <strong>Alpha Build</strong></div>
+              <div class="stat-pill">💾 Size: <strong>~1.5 GB</strong></div>
+              <div class="stat-pill">🕹️ Engine: <strong>Unreal</strong></div>
+              <div class="stat-pill">🎯 Genre: <strong>Sci-Fi</strong></div>
+            </div>
+
+            <button class="specs-btn" onclick="openSpecsModal('Project Beta', 'Win 10/11', 'Core i5 8th Gen', '8 GB', 'GTX 1060', 'Win 11', 'Core i7', '16 GB', 'RTX 3060')">⚙️ Target Specs</button>
+          </div>
+          <a class="download-btn" style="background:#1f2833; color:#777; box-shadow:none; cursor:not-allowed;">🔒 Coming Soon</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Rockstar Style Footer -->
+    <footer>
+      <div class="footer-socials">
+        <a href="https://discord.com" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>Created By <span>Abhishek & Abeer</span></p>
+    </footer>
+  </div>
+
+  <!-- System Specs Modal -->
+  <div class="modal-overlay" id="specsModal" onclick="closeSpecsModal()">
+    <div class="modal-box" onclick="event.stopPropagation();">
+      <span class="close-specs" onclick="closeSpecsModal()">&times;</span>
+      <h3 id="specsGameTitle" style="color:#66fcf1; margin-bottom:10px; text-shadow: 0 0 8px #66fcf1;">System Requirements</h3>
+      <table class="specs-table">
+        <thead>
+          <tr><th>Component</th><th>Minimum</th><th>Recommended</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>OS</td><td id="minOS">-</td><td id="recOS">-</td></tr>
+          <tr><td>CPU</td><td id="minCPU">-</td><td id="recCPU">-</td></tr>
+          <tr><td>RAM</td><td id="minRAM">-</td><td id="recRAM">-</td></tr>
+          <tr><td>GPU</td><td id="minGPU">-</td><td id="recGPU">-</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+    <img id="lightboxImg" src="">
+  </div>
+
+  <script>
+    /* Navigation Systems */
+    function toggleDrawer() {
+      document.getElementById('sideDrawer').classList.toggle('open');
+    }
+
+    function openHomeScreen() {
+      document.getElementById('heroScreen').style.display = 'flex';
+      document.getElementById('catalogScreen').style.display = 'none';
+      if(document.getElementById('sideDrawer').classList.contains('open')) toggleDrawer();
+    }
+
+    function openCatalogView() {
+      document.getElementById('heroScreen').style.display = 'none';
+      document.getElementById('catalogScreen').style.display = 'flex';
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => card.style.display = 'flex');
+      if(document.getElementById('sideDrawer').classList.contains('open')) toggleDrawer();
+    }
+
+    function openSingleGame(categoryKey) {
+      openCatalogView();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        if (card.getAttribute('data-category') === categoryKey) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    /* Filters & Search */
+    function filterCategory(category, element) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+      document.getElementById('gameSearch').value = '';
+
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function searchGames() {
+      const query = document.getElementById('gameSearch').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const title = card.querySelector('.game-title') ? card.querySelector('.game-title').innerText.toLowerCase() : '';
+        if (title.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    /* Star Rating & Review System */
+    let currentRating = 5;
+    function setRating(rating) {
+      currentRating = rating;
+      const stars = document.querySelectorAll('#starContainer .star');
+      stars.forEach((star, idx) => {
+        star.classList.toggle('active', idx < rating);
+      });
+    }
+
+    function submitReview() {
+      const nameInput = document.getElementById('userNameInput');
+      const textInput = document.getElementById('userReviewText');
+      const name = nameInput.value.trim() || 'Anonymous Player';
+      const text = textInput.value.trim();
+
+      if (!text) {
+        alert('Please enter a review message!');
+        return;
+      }
+
+      const reviewsContainer = document.getElementById('reviewsContainer');
+      const newReview = document.createElement('div');
+      newReview.className = 'single-review';
+      let starStr = '★'.repeat(currentRating) + '☆'.repeat(5 - currentRating);
+      newReview.innerHTML = `<strong>${name}:</strong> ${text} <span style="color:#ff9900;">${starStr}</span>`;
+      reviewsContainer.prepend(newReview);
+
+      textInput.value = ''; nameInput.value = '';
+    }
+
+    /* Modals Control */
+    function openSpecsModal(title, minOS, minCPU, minRAM, minGPU, recOS, recCPU, recRAM, recGPU) {
+      document.getElementById('specsGameTitle').innerText = '⚙️ ' + title + ' Specs';
+      document.getElementById('minOS').innerText = minOS; document.getElementById('minCPU').innerText = minCPU;
+      document.getElementById('minRAM').innerText = minRAM; document.getElementById('minGPU').innerText = minGPU;
+      document.getElementById('recOS').innerText = recOS; document.getElementById('recCPU').innerText = recCPU;
+      document.getElementById('recRAM').innerText = recRAM; document.getElementById('recGPU').innerText = recGPU;
+      document.getElementById('specsModal').style.display = 'flex';
+    }
+    function closeSpecsModal() { document.getElementById('specsModal').style.display = 'none'; }
+    function openLightbox(src) { document.getElementById('lightboxImg').src = src; document.getElementById('lightboxModal').style.display = 'flex'; }
+    function closeLightbox() { document.getElementById('lightboxModal').style.display = 'none'; }
+
+    /* Floating Particles Canvas */
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray = [];
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.8;
+        this.speedY = (Math.random() - 0.5) * 0.8;
+      }
+      update() {
+        this.x += this.speedX; this.y += this.speedY;
+        if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
+      }
+      draw() {
+        ctx.fillStyle = '#66fcf1'; ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+      }
+    }
+    function initParticles() {
+      particlesArray = [];
+      for (let i = 0; i < 50; i++) particlesArray.push(new Particle());
+    }
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animateParticles);
+    }
+    initParticles(); animateParticles();
+  </script>
+
+</body>
+</html>
