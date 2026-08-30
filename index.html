@@ -69,7 +69,7 @@
     .section-title {
       color: #ff9900;
       font-size: 1.3rem;
-      margin: 20px 0 15px 0;
+      margin: 30px 0 15px 0;
       text-transform: uppercase;
       letter-spacing: 1px;
       text-shadow: 0 0 10px rgba(255, 153, 0, 0.3);
@@ -143,7 +143,6 @@
       margin-bottom: 15px;
     }
 
-    /* Game Stats Badges Grid */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -219,6 +218,57 @@
       background-color: #ff9900;
       color: #000;
       box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
+    }
+
+    /* Roadmap Timeline */
+    .extra-section {
+      max-width: 900px;
+      width: 100%;
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .info-card {
+      background: rgba(31, 40, 51, 0.7);
+      backdrop-filter: blur(6px);
+      border: 1px solid #2f3e46;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+    }
+    .info-card h3 {
+      color: #66fcf1;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #2f3e46;
+      padding-bottom: 6px;
+    }
+    .timeline-item {
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      color: #c5c6c7;
+      padding-left: 10px;
+      border-left: 2px solid #ff9900;
+    }
+    .timeline-item strong {
+      color: #fff;
+    }
+
+    .team-member {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed #222d37;
+      font-size: 0.9rem;
+    }
+    .team-member span:first-child {
+      color: #fff;
+      font-weight: bold;
+    }
+    .team-member span:last-child {
+      color: #66fcf1;
+      font-size: 0.8rem;
     }
 
     .social-section {
@@ -342,6 +392,33 @@
 
     </div>
 
+    <div class="extra-section" id="extraSection">
+      <div class="info-card">
+        <h3>🚀 Studio Roadmap</h3>
+        <div class="timeline-item">
+          <strong>Phase 1 (Completed):</strong> Project Alpha Launch & Community Setup
+        </div>
+        <div class="timeline-item">
+          <strong>Phase 2 (In-Progress):</strong> Patch Updates, Bug Fixes & Optimization
+        </div>
+        <div class="timeline-item">
+          <strong>Phase 3 (Upcoming):</strong> Project Beta Teaser Trailer & Open Beta
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>👥 Core Dev Team</h3>
+        <div class="team-member">
+          <span>Abhishek</span>
+          <span>Lead Developer / Programmer</span>
+        </div>
+        <div class="team-member">
+          <span>Abeer</span>
+          <span>Game Designer / 3D Modeler</span>
+        </div>
+      </div>
+    </div>
+
     <div class="social-section">
       <div class="social-links">
         <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-btn youtube">▶️ YouTube</a>
@@ -361,6 +438,7 @@
       const grid = document.getElementById('gamesGrid');
       const backBtn = document.getElementById('backBtn');
       const sectionTitle = document.getElementById('sectionTitle');
+      const extraSection = document.getElementById('extraSection');
 
       allCards.forEach(card => {
         if (card !== selectedCard) card.style.display = 'none';
@@ -368,6 +446,7 @@
 
       grid.classList.add('single-mode');
       backBtn.style.display = 'inline-block';
+      if (extraSection) extraSection.style.display = 'none';
       sectionTitle.innerText = '🎮 Game Details';
     }
 
@@ -376,6 +455,7 @@
       const grid = document.getElementById('gamesGrid');
       const backBtn = document.getElementById('backBtn');
       const sectionTitle = document.getElementById('sectionTitle');
+      const extraSection = document.getElementById('extraSection');
 
       allCards.forEach(card => {
         card.style.display = 'flex';
@@ -383,6 +463,7 @@
 
       grid.classList.remove('single-mode');
       backBtn.style.display = 'none';
+      if (extraSection) extraSection.style.display = 'grid';
       sectionTitle.innerText = '🎮 Our Games';
     }
 
