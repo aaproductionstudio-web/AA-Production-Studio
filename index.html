@@ -69,10 +69,61 @@
     .section-title {
       color: #ff9900;
       font-size: 1.3rem;
-      margin: 30px 0 15px 0;
+      margin: 25px 0 15px 0;
       text-transform: uppercase;
       letter-spacing: 1px;
       text-shadow: 0 0 10px rgba(255, 153, 0, 0.3);
+    }
+
+    /* Filter & Search Bar */
+    .filter-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+      width: 100%;
+      max-width: 900px;
+    }
+    #gameSearch {
+      width: 100%;
+      max-width: 450px;
+      padding: 10px 18px;
+      background: rgba(31, 40, 51, 0.9);
+      border: 1.5px solid #45a29e;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: 0.3s border-color, 0.3s box-shadow;
+    }
+    #gameSearch:focus {
+      border-color: #ff9900;
+      box-shadow: 0 0 10px rgba(255, 153, 0, 0.4);
+    }
+    .filter-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .filter-btn {
+      padding: 7px 15px;
+      background: rgba(31, 40, 51, 0.7);
+      color: #66fcf1;
+      border: 1px solid #45a29e;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #ff9900;
+      color: #0b0c10;
+      border-color: #ff9900;
+      box-shadow: 0 0 10px rgba(255, 153, 0, 0.5);
     }
 
     .games-grid {
@@ -164,7 +215,6 @@
       color: #66fcf1;
     }
 
-    /* Screenshots Section */
     .screenshots-container {
       margin-bottom: 15px;
     }
@@ -193,7 +243,6 @@
       border-color: #66fcf1;
     }
 
-    /* Specs Button */
     .specs-btn {
       width: 100%;
       padding: 8px;
@@ -212,7 +261,6 @@
       box-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
     }
 
-    /* Review & Rating Section */
     .review-section {
       background: rgba(17, 22, 29, 0.85);
       border: 1px solid #2f3e46;
@@ -354,7 +402,7 @@
       box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
     }
 
-    /* Modals Setup */
+    /* Modal System */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -417,7 +465,6 @@
       color: #ff3366;
     }
 
-    /* Lightbox Modal */
     .lightbox-modal {
       display: none;
       position: fixed;
@@ -447,7 +494,6 @@
       cursor: pointer;
     }
 
-    /* Roadmap Timeline & Team */
     .extra-section {
       max-width: 900px;
       width: 100%;
@@ -498,7 +544,6 @@
       font-size: 0.8rem;
     }
 
-    /* Social Section */
     .social-section {
       margin-top: 40px;
       max-width: 900px;
@@ -568,12 +613,26 @@
 
     <div class="section-title" id="sectionTitle">🎮 Our Games</div>
 
+    <div class="filter-container" id="filterSection">
+      <input 
+        type="text" 
+        id="gameSearch" 
+        placeholder="Search games by title..." 
+        onkeyup="searchGames()"
+      >
+      <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterCategory('all', this)">All Games</button>
+        <button class="filter-btn" onclick="filterCategory('pc', this)">PC Games</button>
+        <button class="filter-btn" onclick="filterCategory('android', this)">Android Games</button>
+        <button class="filter-btn" onclick="filterCategory('upcoming', this)">Upcoming</button>
+      </div>
+    </div>
+
     <button class="back-btn" id="backBtn" onclick="resetView()">⬅️ Back to All Games</button>
 
     <div class="games-grid" id="gamesGrid">
       
-      <!-- GAME 1 -->
-      <div class="card" onclick="openGame(this)">
+      <div class="card" data-category="pc" onclick="openGame(this)">
         <div>
           <div class="badge">LIVE DOWNLOAD</div>
           <div class="game-title">Project Alpha (PC)</div>
@@ -586,7 +645,6 @@
             <div class="stat-pill">👥 <span>Downloads: <strong>1.2k+</strong></span></div>
           </div>
 
-          <!-- Screenshots -->
           <div class="screenshots-container">
             <div class="screenshots-title">📸 Gameplay In-Game Shots:</div>
             <div class="screenshots-grid">
@@ -596,12 +654,10 @@
             </div>
           </div>
 
-          <!-- Can I Run It Button -->
           <button class="specs-btn" onclick="openSpecsModal('Project Alpha', 'Win 10/11', 'Intel Core i3 6th Gen', '4 GB', 'Intel HD 620', 'Win 11', 'Intel Core i5 / Ryzen 5', '8 GB', 'GTX 1050 / RX 560'); event.stopPropagation();">
             ⚙️ Can I Run It? (System Specs)
           </button>
 
-          <!-- Star Rating & Community Reviews -->
           <div class="review-section" onclick="event.stopPropagation();">
             <h4>⭐ Player Reviews & Rating</h4>
             
@@ -636,8 +692,7 @@
         </a>
       </div>
 
-      <!-- GAME 2 -->
-      <div class="card" onclick="openGame(this)">
+      <div class="card" data-category="upcoming" onclick="openGame(this)">
         <div>
           <div class="badge" style="background:#ff3366; color:#fff; animation:none;">COMING SOON</div>
           <div class="game-title">Project Beta (Upcoming)</div>
@@ -661,7 +716,6 @@
 
     </div>
 
-    <!-- Extra Section -->
     <div class="extra-section" id="extraSection">
       <div class="info-card">
         <h3>🚀 Studio Roadmap</h3>
@@ -702,7 +756,6 @@
     </footer>
   </div>
 
-  <!-- System Specs Modal -->
   <div class="modal-overlay" id="specsModal" onclick="closeSpecsModal()">
     <div class="modal-box" onclick="event.stopPropagation();">
       <span class="close-specs" onclick="closeSpecsModal()">&times;</span>
@@ -742,14 +795,53 @@
     </div>
   </div>
 
-  <!-- Lightbox Modal -->
   <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
     <span class="close-modal">&times;</span>
     <img id="lightboxImg" src="" alt="Screenshot Full View">
   </div>
 
   <script>
-    /* Rating & Review Script + DISCORD WEBHOOK INTEGRATION */
+    /* Category Filter */
+    function filterCategory(category, element) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+
+      document.getElementById('gameSearch').value = '';
+
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (category === 'all' || cardCategory === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    /* Live Search */
+    function searchGames() {
+      const query = document.getElementById('gameSearch').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      buttons[0].classList.add('active');
+
+      cards.forEach(card => {
+        const title = card.querySelector('.game-title') ? card.querySelector('.game-title').innerText.toLowerCase() : '';
+        const text = card.innerText.toLowerCase();
+
+        if (title.includes(query) || text.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    /* Rating & Review System (Discord Webhook) */
     let currentRating = 5;
 
     function setRating(rating) {
@@ -775,7 +867,6 @@
         return;
       }
 
-      // 1. Local Screen Par Instant Show Hoga
       const reviewsContainer = document.getElementById('reviewsContainer');
       const newReview = document.createElement('div');
       newReview.className = 'single-review';
@@ -784,14 +875,13 @@
       newReview.innerHTML = `<strong>${name}:</strong> ${text}<span class="review-stars">${starStr}</span>`;
       reviewsContainer.prepend(newReview);
 
-      // 2. DISCORD WEBHOOK SENDING SYSTEM
-      const discordWebhookURL = "https://discord.com/api/webhooks/1543538976294441012/E2chNliSSZDn1wuzlio74vJoc_1SzTnK_awdqOEbnIRwNUW8jaIsRAh_xDFilfES2A6i"; 
+      const discordWebhookURL = "YOUR_DISCORD_WEBHOOK_URL_HERE"; 
 
-      if (discordWebhookURL !== "https://discord.com/api/webhooks/1543538976294441012/E2chNliSSZDn1wuzlio74vJoc_1SzTnK_awdqOEbnIRwNUW8jaIsRAh_xDFilfES2A6i") {
+      if (discordWebhookURL !== "YOUR_DISCORD_WEBHOOK_URL_HERE") {
         const payload = {
           username: "Website Review Bot",
           embeds: [{
-            title: "⭐ New Website Review Received!",
+            title: "⭐ New Game Review Received!",
             color: 16750848,
             fields: [
               { name: "Player Name", value: name, inline: true },
@@ -809,19 +899,17 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
           });
-          alert('Thank you! Your review has been sent to the developers.');
+          alert('Thank you! Your review has been sent.');
         } catch (error) {
           console.error("Error sending review to Discord:", error);
         }
-      } else {
-        alert('Review added! (Discord Webhook link is pending setup in code)');
       }
 
       textInput.value = '';
       nameInput.value = '';
     }
 
-    /* System Specs Modal */
+    /* Specs Modal */
     function openSpecsModal(title, minOS, minCPU, minRAM, minGPU, recOS, recCPU, recRAM, recGPU) {
       document.getElementById('specsGameTitle').innerText = '⚙️ ' + title + ' Requirements';
       document.getElementById('minOS').innerText = minOS;
@@ -853,11 +941,12 @@
       document.getElementById('lightboxModal').style.display = 'none';
     }
 
-    /* Game View State Control */
+    /* Game View State */
     function openGame(selectedCard) {
       const allCards = document.querySelectorAll('.card');
       const grid = document.getElementById('gamesGrid');
       const backBtn = document.getElementById('backBtn');
+      const filterSection = document.getElementById('filterSection');
       const sectionTitle = document.getElementById('sectionTitle');
       const extraSection = document.getElementById('extraSection');
 
@@ -867,6 +956,7 @@
 
       grid.classList.add('single-mode');
       backBtn.style.display = 'inline-block';
+      if (filterSection) filterSection.style.display = 'none';
       if (extraSection) extraSection.style.display = 'none';
       sectionTitle.innerText = '🎮 Game Details';
     }
@@ -875,6 +965,7 @@
       const allCards = document.querySelectorAll('.card');
       const grid = document.getElementById('gamesGrid');
       const backBtn = document.getElementById('backBtn');
+      const filterSection = document.getElementById('filterSection');
       const sectionTitle = document.getElementById('sectionTitle');
       const extraSection = document.getElementById('extraSection');
 
@@ -884,6 +975,7 @@
 
       grid.classList.remove('single-mode');
       backBtn.style.display = 'none';
+      if (filterSection) filterSection.style.display = 'flex';
       if (extraSection) extraSection.style.display = 'grid';
       sectionTitle.innerText = '🎮 Our Games';
     }
