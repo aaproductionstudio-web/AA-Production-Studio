@@ -17,39 +17,43 @@
       color: #ffffff;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 15px;
+      padding-bottom: 30px;
     }
+
+    /* Top YouTube-Style Banner Container */
+    .banner-container {
+      width: 100%;
+      max-width: 800px; /* Card se thoda chauda ya fit rakhne ke liye */
+      margin-top: 20px;
+      padding: 0 15px;
+    }
+    .banner-img {
+      width: 100%;
+      height: 180px; /* PC par height */
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #333;
+      box-shadow: 0 4px 15px rgba(0, 255, 204, 0.2);
+    }
+
+    /* Main Content Card */
     .card {
       background: #1e1e1e;
-      padding: 30px 20px;
+      padding: 25px 20px;
       border-radius: 16px;
       border: 1px solid #333;
-      max-width: 450px;
-      width: 100%;
-      box-shadow: 0 8px 24px rgba(0, 255, 204, 0.15);
+      max-width: 800px;
+      width: calc(100% - 30px);
+      margin-top: 15px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
-    
-    /* Header layout - Logo aur Title side-by-side */
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .logo {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 6px rgba(0, 255, 204, 0.4));
-    }
+
     h1 {
       color: #00ffcc;
-      font-size: 1.6rem;
-      line-height: 1.2;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
     }
 
     .badge {
@@ -60,13 +64,15 @@
       border-radius: 20px;
       font-size: 0.75rem;
       display: inline-block;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
+
     p {
       color: #ccc;
       font-size: 0.95rem;
       line-height: 1.5;
     }
+
     .download-btn {
       display: inline-block;
       margin-top: 20px;
@@ -78,12 +84,12 @@
       border-radius: 8px;
       font-size: 1rem;
       transition: all 0.2s ease;
-      width: 80%;
     }
     .download-btn:hover {
       background-color: #00cc99;
       transform: translateY(-2px);
     }
+
     footer {
       margin-top: 25px;
       font-size: 0.85rem;
@@ -96,37 +102,32 @@
       font-weight: bold;
     }
 
-    /* Mobile screens ke liye auto adjust */
+    /* Mobile view ke liye auto-height adjustment */
     @media (max-width: 480px) {
-      .card {
-        padding: 20px 15px;
-      }
-      .logo {
-        width: 40px;
-        height: 40px;
+      .banner-img {
+        height: 120px; /* Mobile par banner ki height thodi kam ho jayegi */
       }
       h1 {
-        font-size: 1.3rem;
-      }
-      .download-btn {
-        width: 100%;
+        font-size: 1.4rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <div class="header-container">
-      <img src="logo.png" alt="AA Logo" class="logo">
-      <h1>AA Production Studio</h1>
-    </div>
+  <!-- Top Banner (YouTube Style) -->
+  <div class="banner-container">
+    <img src="banner.jpg" alt="AA Production Studio Banner" class="banner-img">
+  </div>
 
+  <!-- Content Card -->
+  <div class="card">
+    <h1>AA Production Studio</h1>
     <div class="badge">⚠️ Under Development</div>
 
     <p>We are creating awesome gaming experiences. Download our PC game below!</p>
 
-    <!-- Apne Google Drive ka shared link niche paste karein -->
+    <!-- Google Drive Download Link -->
     <a href="https://drive.google.com/file/d/1-O27TnKqxG3m2ZmEtYWOTesRBk1x3sgH/view" target="_blank" class="download-btn">
       ⬇️ Spiderman Reloaded (PC)
     </a>
