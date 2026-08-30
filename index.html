@@ -2,45 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AA Production Studio</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
       background-color: #121212;
       color: #ffffff;
-      padding-top: 50px;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-    h1 { color: #00ffcc; }
-    .card {
-      border: 1px solid #333;
+    .container {
       background: #1e1e1e;
-      display: inline-block;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
+      padding: 40px;
+      border-radius: 12px;
+      border: 1px solid #333;
+      box-shadow: 0 4px 20px rgba(0, 255, 204, 0.1);
+      max-width: 80%;
     }
-    a.btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #00ffcc;
+    h1 {
+      color: #00ffcc;
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+    }
+    .badge {
+      background: #ff9900;
       color: #000;
-      text-decoration: none;
+      padding: 6px 14px;
       font-weight: bold;
-      border-radius: 5px;
-      margin-top: 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+    p {
+      color: #aaa;
+      font-size: 1.1rem;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.95rem;
+      color: #888;
+      border-top: 1px solid #333;
+      padding-top: 15px;
+    }
+    footer span {
+      color: #00ffcc;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <h1>AA Production Studio</h1>
-  <p>Welcome to our official gaming website!</p>
-
-  <div class="card">
-    <h2>🧪 Test Box Runner Game</h2>
-    <p>Play our test game while main games are under development.</p>
-    <a href="game.html" class="btn">Play Game</a>
+  <div class="container">
+    <h1>AA Production Studio</h1>
+    <div class="badge">⚠️ Website Under Development</div>
+    <p>We are currently working on awesome games. Stay tuned!</p>
+    
+    <footer>
+      Created By <span>Abhishek & Abeer</span>
+    </footer>
   </div>
 
 </body>
