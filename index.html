@@ -22,7 +22,7 @@
       padding-bottom: 40px;
     }
 
-    /* Top Banner */
+    /* Top Banner with Glow */
     .banner-container {
       width: 100%;
       max-width: 900px;
@@ -34,67 +34,95 @@
       height: 200px;
       object-fit: cover;
       border-radius: 12px;
-      border: 1px solid rgba(0, 255, 204, 0.3);
-      box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+      border: 1px solid rgba(102, 252, 241, 0.4);
+      box-shadow: 0 0 20px rgba(102, 252, 241, 0.3);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .banner-img:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 35px rgba(102, 252, 241, 0.6);
     }
 
     /* Studio Header */
     .studio-header {
       margin-top: 25px;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     h1 {
       color: #66fcf1;
       font-size: 2.2rem;
-      text-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
+      text-shadow: 0 0 15px rgba(102, 252, 241, 0.5);
     }
     .section-title {
       color: #ff9900;
-      font-size: 1.4rem;
-      margin: 25px 0 15px 0;
+      font-size: 1.3rem;
+      margin: 20px 0 15px 0;
       text-transform: uppercase;
       letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(255, 153, 0, 0.3);
     }
 
-    /* Games Grid Layout (2 Games Side-by-Side) */
+    /* Games Grid Layout */
     .games-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 25px;
       max-width: 900px;
       width: calc(100% - 30px);
       margin-top: 10px;
+      animation: fadeIn 0.8s ease-in-out;
     }
 
-    /* Individual Game Card */
+    /* Individual Clickable Game Card */
     .card {
       background: #1f2833;
       padding: 25px 20px;
       border-radius: 16px;
       border: 1px solid #45a29e;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(69, 162, 158, 0.2);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       text-align: left;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(102, 252, 241, 0.5);
+    }
+
+    /* Full View Mode jab card click hoga */
+    .games-grid.single-mode {
+      display: flex;
+      justify-content: center;
+    }
+    .games-grid.single-mode .card {
+      max-width: 600px;
+      width: 100%;
+      cursor: default;
+      transform: none;
+      box-shadow: 0 0 30px rgba(102, 252, 241, 0.4);
     }
 
     .badge {
       background: #ff9900;
       color: #000;
-      padding: 4px 10px;
+      padding: 5px 12px;
       font-weight: bold;
       border-radius: 15px;
       font-size: 0.75rem;
       display: inline-block;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       align-self: flex-start;
+      animation: pulse 2s infinite;
     }
 
     .game-title {
       color: #66fcf1;
       font-size: 1.4rem;
       margin-bottom: 8px;
+      text-shadow: 0 0 8px rgba(102, 252, 241, 0.3);
     }
 
     p {
@@ -104,7 +132,6 @@
       margin-bottom: 15px;
     }
 
-    /* Requirements Box */
     .req-box {
       background: #11161d;
       padding: 12px;
@@ -112,7 +139,7 @@
       border: 1px solid #2f3e46;
       font-size: 0.8rem;
       color: #aaa;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .download-btn {
@@ -125,23 +152,45 @@
       font-weight: bold;
       border-radius: 8px;
       font-size: 1rem;
+      box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
       transition: all 0.3s ease;
     }
     .download-btn:hover {
       background-color: #45a29e;
       color: #ffffff;
-      box-shadow: 0 0 15px rgba(102, 252, 241, 0.6);
+      box-shadow: 0 0 25px rgba(102, 252, 241, 0.8);
     }
 
-    /* Disabled Button For Upcoming Games */
     .download-btn.disabled {
-      background-color: #333;
-      color: #777;
+      background-color: #222;
+      color: #666;
+      box-shadow: none;
       cursor: not-allowed;
       pointer-events: none;
+      border: 1px solid #333;
     }
 
-    /* Social Links */
+    /* Back Button */
+    .back-btn {
+      display: none;
+      margin: 15px auto;
+      padding: 8px 18px;
+      background-color: #11161d;
+      color: #ff9900;
+      border: 1px solid #ff9900;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+      background-color: #ff9900;
+      color: #000;
+      box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
+    }
+
+    /* Social Section */
     .social-section {
       margin-top: 40px;
       max-width: 900px;
@@ -154,15 +203,19 @@
       flex-wrap: wrap;
     }
     .social-btn {
-      padding: 8px 16px;
-      border-radius: 6px;
+      padding: 10px 18px;
+      border-radius: 8px;
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: bold;
       color: #ffffff;
       background: #11161d;
       border: 1px solid #2f3e46;
+      transition: all 0.3s ease;
     }
+    .social-btn.youtube:hover { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); }
+    .social-btn.discord:hover { border-color: #5865f2; color: #5865f2; box-shadow: 0 0 15px rgba(88, 101, 242, 0.5); }
+    .social-btn.instagram:hover { border-color: #e1306c; color: #e1306c; box-shadow: 0 0 15px rgba(225, 48, 108, 0.5); }
 
     footer {
       margin-top: 40px;
@@ -174,15 +227,27 @@
       font-weight: bold;
     }
 
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(255, 153, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0); }
+    }
+
     @media (max-width: 480px) {
       .games-grid { grid-template-columns: 1fr; }
       .banner-img { height: 130px; }
+      .social-links { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Banner -->
+  <!-- Top Banner -->
   <div class="banner-container">
     <img src="banner.jpg" alt="AA Production Studio Banner" class="banner-img">
   </div>
@@ -191,17 +256,20 @@
     <h1>AA Production Studio</h1>
   </div>
 
-  <div class="section-title">🎮 Our Games</div>
+  <div class="section-title" id="sectionTitle">🎮 Our Games</div>
+
+  <!-- Back Button (Initially Hidden) -->
+  <button class="back-btn" id="backBtn" onclick="resetView()">⬅️ Back to All Games</button>
 
   <!-- Games Grid Container -->
-  <div class="games-grid">
+  <div class="games-grid" id="gamesGrid">
 
-    <!-- GAME 1 (Current Game) -->
-    <div class="card">
+    <!-- GAME 1 -->
+    <div class="card" onclick="openGame(this)">
       <div>
         <div class="badge">LIVE DOWNLOAD</div>
         <div class="game-title">Project Alpha (PC)</div>
-        <p>Our featured 3D Unity action/adventure game. Download and play on PC!</p>
+        <p>Our featured 3D Unity game. Download and play directly on PC!</p>
         
         <div class="req-box">
           <strong>Min Requirements:</strong><br>
@@ -209,15 +277,15 @@
         </div>
       </div>
 
-      <a href="APNA_GOOGLE_DRIVE_LINK_HERE" target="_blank" class="download-btn">
+      <a href="APNA_GOOGLE_DRIVE_LINK_HERE" target="_blank" class="download-btn" onclick="event.stopPropagation();">
         ⬇️ Download Game
       </a>
     </div>
 
-    <!-- GAME 2 (Upcoming Game) -->
-    <div class="card">
+    <!-- GAME 2 -->
+    <div class="card" onclick="openGame(this)">
       <div>
-        <div class="badge" style="background:#ff3366; color:#fff;">COMING SOON</div>
+        <div class="badge" style="background:#ff3366; color:#fff; animation:none;">COMING SOON</div>
         <div class="game-title">Project Beta (Upcoming)</div>
         <p>Next-gen story-driven game currently in active development by Abhishek & Abeer.</p>
         
@@ -227,25 +295,64 @@
         </div>
       </div>
 
-      <a href="#" class="download-btn disabled">
+      <a href="#" class="download-btn disabled" onclick="event.stopPropagation();">
         🔒 Coming Soon
       </a>
     </div>
 
   </div>
 
-  <!-- Social Media Section -->
+  <!-- Glowing Social Links -->
   <div class="social-section">
     <div class="social-links">
-      <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-btn">▶️ YouTube</a>
-      <a href="YOUR_DISCORD_LINK" target="_blank" class="social-btn">💬 Discord</a>
-      <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-btn">📸 Instagram</a>
+      <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-btn youtube">▶️ YouTube</a>
+      <a href="YOUR_DISCORD_LINK" target="_blank" class="social-btn discord">💬 Discord</a>
+      <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-btn instagram">📸 Instagram</a>
     </div>
   </div>
 
   <footer>
     Created By <span>Abhishek & Abeer</span>
   </footer>
+
+  <!-- JavaScript for Click Interaction -->
+  <script>
+    function openGame(selectedCard) {
+      const allCards = document.querySelectorAll('.card');
+      const grid = document.getElementById('gamesGrid');
+      const backBtn = document.getElementById('backBtn');
+      const sectionTitle = document.getElementById('sectionTitle');
+
+      // Hide all other cards
+      allCards.forEach(card => {
+        if (card !== selectedCard) {
+          card.style.display = 'none';
+        }
+      });
+
+      // Style selected card to show single mode
+      grid.classList.add('single-mode');
+      backBtn.style.display = 'inline-block';
+      sectionTitle.innerText = '🎮 Game Details';
+    }
+
+    function resetView() {
+      const allCards = document.querySelectorAll('.card');
+      const grid = document.getElementById('gamesGrid');
+      const backBtn = document.getElementById('backBtn');
+      const sectionTitle = document.getElementById('sectionTitle');
+
+      // Show all cards again
+      allCards.forEach(card => {
+        card.style.display = 'flex';
+      });
+
+      // Reset styles
+      grid.classList.remove('single-mode');
+      backBtn.style.display = 'none';
+      sectionTitle.innerText = '🎮 Our Games';
+    }
+  </script>
 
 </body>
 </html>
