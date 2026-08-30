@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AA Production Studio</title>
   
-  <!-- SEO & Social Meta Tags -->
-  <meta name="description" content="AA Production Studio - Official site for PC & Android games by Abhishek & Abeer.">
+  <meta name="description" content="AA Production Studio - Official Gaming Portal by Abhishek & Abeer.">
   <meta property="og:title" content="AA Production Studio">
-  <meta property="og:description" content="Download official PC & Android indie games.">
+  <meta property="og:description" content="Download PC and Android Games by AA Production Studio.">
   <meta property="og:image" content="banner.jpg">
+  <title>AA Production Studio</title>
 
   <style>
     * {
@@ -17,15 +16,17 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0b0c10;
+      background-color: #050709;
       color: #ffffff;
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
     }
 
+    /* Background Particle Canvas */
     #particle-canvas {
       position: fixed;
       top: 0;
@@ -42,40 +43,45 @@
       top: 0;
       left: 0;
       width: 100%;
-      padding: 20px 30px;
+      padding: 20px 35px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.85), transparent);
+      background: linear-gradient(to bottom, rgba(5, 7, 9, 0.95), transparent);
     }
+
     .logo {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 800;
       color: #66fcf1;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px rgba(102, 252, 241, 0.4);
+      letter-spacing: 2.5px;
+      text-shadow: 0 0 10px rgba(102, 252, 241, 0.8), 0 0 25px rgba(102, 252, 241, 0.5);
     }
+
     .menu-trigger {
-      background: rgba(31, 40, 51, 0.8);
+      background: rgba(11, 12, 16, 0.7);
       border: 1.5px solid #66fcf1;
       color: #66fcf1;
       font-size: 0.95rem;
-      font-weight: bold;
-      padding: 8px 18px;
-      border-radius: 20px;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 25px;
       cursor: pointer;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
       transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
-    }
-    .menu-trigger:hover {
-      background: #66fcf1;
-      color: #0b0c10;
-      box-shadow: 0 0 15px rgba(102, 252, 241, 0.5);
     }
 
-    /* Clean Hero Screen (Rockstar Style) */
+    .menu-trigger:hover {
+      background: #66fcf1;
+      color: #050709;
+      box-shadow: 0 0 25px #66fcf1, 0 0 50px #66fcf1;
+      transform: scale(1.05);
+    }
+
+    /* Fullscreen Clean Hero Section */
     .hero-container {
       position: relative;
       width: 100%;
@@ -86,7 +92,8 @@
       text-align: center;
       z-index: 1;
     }
-    .hero-bg-img {
+
+    .hero-bg-media {
       position: absolute;
       top: 0;
       left: 0;
@@ -96,30 +103,49 @@
       z-index: 1;
       filter: brightness(0.45);
     }
-    /* Baad me video ke liye:
-    .hero-bg-video {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; filter: brightness(0.45);
-    }
-    */
+
     .hero-overlay {
       position: relative;
       z-index: 2;
-      max-width: 800px;
+      max-width: 850px;
       padding: 20px;
     }
+
     .hero-overlay h1 {
-      font-size: 3.2rem;
-      color: #66fcf1;
+      font-size: 3.5rem;
+      color: #ffffff;
       text-transform: uppercase;
-      letter-spacing: 3px;
-      text-shadow: 0 0 20px rgba(102, 252, 241, 0.6);
-      margin-bottom: 12px;
+      letter-spacing: 4px;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px #66fcf1, 0 0 25px #66fcf1, 0 0 45px rgba(102, 252, 241, 0.6);
     }
+
     .hero-overlay p {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: #c5c6c7;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .explore-btn {
+      padding: 14px 34px;
+      font-size: 1rem;
+      background: transparent;
+      border: 2px solid #66fcf1;
+      color: #66fcf1;
+      border-radius: 30px;
+      font-weight: 800;
+      cursor: pointer;
+      letter-spacing: 1px;
+      box-shadow: 0 0 20px rgba(102, 252, 241, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .explore-btn:hover {
+      background: #66fcf1;
+      color: #050709;
+      box-shadow: 0 0 30px #66fcf1, 0 0 60px #66fcf1;
+      transform: translateY(-2px);
     }
 
     /* Side Drawer Menu */
@@ -129,30 +155,35 @@
       right: -360px;
       width: 320px;
       height: 100%;
-      background: rgba(11, 12, 16, 0.95);
-      backdrop-filter: blur(12px);
-      border-left: 1px solid #45a29e;
-      box-shadow: -10px 0 30px rgba(0,0,0,0.9);
+      background: rgba(5, 7, 9, 0.95);
+      backdrop-filter: blur(15px);
+      border-left: 2px solid #66fcf1;
+      box-shadow: -10px 0 35px rgba(102, 252, 241, 0.25);
       z-index: 200;
       transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
       padding: 40px 25px;
       display: flex;
       flex-direction: column;
     }
+
     .side-drawer.open {
       right: 0;
     }
+
     .close-drawer {
       align-self: flex-end;
       font-size: 2rem;
       color: #aaa;
       cursor: pointer;
       margin-bottom: 25px;
-      transition: color 0.2s ease;
+      transition: all 0.2s ease;
     }
+
     .close-drawer:hover {
       color: #ff9900;
+      text-shadow: 0 0 12px #ff9900;
     }
+
     .menu-heading {
       color: #ff9900;
       font-size: 0.85rem;
@@ -161,25 +192,31 @@
       margin-bottom: 15px;
       border-bottom: 1px solid #1f2833;
       padding-bottom: 5px;
+      text-shadow: 0 0 8px rgba(255, 153, 0, 0.6);
     }
+
     .nav-list {
       list-style: none;
       margin-bottom: 30px;
     }
+
     .nav-list li {
       margin-bottom: 12px;
     }
+
     .nav-list a {
-      color: #fff;
+      color: #ffffff;
       text-decoration: none;
       font-size: 1.1rem;
       font-weight: 600;
       transition: all 0.3s ease;
       display: block;
     }
+
     .nav-list a:hover {
       color: #66fcf1;
       padding-left: 8px;
+      text-shadow: 0 0 10px #66fcf1;
     }
 
     /* Content Area (Catalog & Game Info) */
@@ -189,102 +226,123 @@
       display: none;
       flex-direction: column;
       align-items: center;
-      padding: 100px 15px 40px;
+      padding: 110px 20px 40px;
     }
 
-    /* Filter & Search Bar */
     .filter-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 25px;
+      gap: 15px;
+      margin-bottom: 35px;
       width: 100%;
       max-width: 900px;
     }
+
     #gameSearch {
       width: 100%;
-      max-width: 450px;
-      padding: 10px 18px;
-      background: rgba(31, 40, 51, 0.9);
+      max-width: 480px;
+      padding: 12px 20px;
+      background: rgba(11, 12, 16, 0.85);
       border: 1.5px solid #45a29e;
-      border-radius: 20px;
-      color: #fff;
+      border-radius: 25px;
+      color: #ffffff;
       font-size: 0.95rem;
       outline: none;
+      box-shadow: 0 0 10px rgba(69, 162, 158, 0.2);
+      transition: all 0.3s ease;
     }
+
     #gameSearch:focus {
-      border-color: #ff9900;
-      box-shadow: 0 0 10px rgba(255, 153, 0, 0.4);
+      border-color: #66fcf1;
+      box-shadow: 0 0 18px rgba(102, 252, 241, 0.6);
     }
+
     .filter-buttons {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       flex-wrap: wrap;
       justify-content: center;
     }
+
     .filter-btn {
-      padding: 7px 15px;
-      background: rgba(31, 40, 51, 0.7);
+      padding: 8px 18px;
+      background: rgba(11, 12, 16, 0.7);
       color: #66fcf1;
-      border: 1px solid #45a29e;
+      border: 1.5px solid #45a29e;
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: bold;
       cursor: pointer;
-    }
-    .filter-btn.active {
-      background: #ff9900;
-      color: #0b0c10;
-      border-color: #ff9900;
+      transition: all 0.3s ease;
     }
 
-    /* Games Cards Layout */
+    .filter-btn.active, .filter-btn:hover {
+      background: #66fcf1;
+      color: #050709;
+      border-color: #66fcf1;
+      box-shadow: 0 0 15px #66fcf1;
+    }
+
+    /* Glowing Game Cards Layout */
     .games-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 25px;
-      max-width: 900px;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 30px;
+      max-width: 950px;
       width: 100%;
     }
+
     .card {
-      background: rgba(31, 40, 51, 0.85);
-      backdrop-filter: blur(8px);
-      padding: 25px 20px;
+      background: rgba(11, 12, 16, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 25px;
       border-radius: 16px;
-      border: 1px solid #45a29e;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+      border: 1.5px solid #45a29e;
+      box-shadow: 0 0 20px rgba(102, 252, 241, 0.15);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #66fcf1;
+      box-shadow: 0 0 30px rgba(102, 252, 241, 0.4);
     }
 
     .badge {
       background: #ff9900;
-      color: #000;
-      padding: 5px 12px;
-      font-weight: bold;
+      color: #050709;
+      padding: 5px 14px;
+      font-weight: 800;
       border-radius: 15px;
       font-size: 0.75rem;
       display: inline-block;
       margin-bottom: 12px;
       align-self: flex-start;
+      box-shadow: 0 0 12px rgba(255, 153, 0, 0.6);
     }
+
     .game-title {
       color: #66fcf1;
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       margin-bottom: 8px;
+      text-shadow: 0 0 8px rgba(102, 252, 241, 0.5);
     }
+
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       margin-bottom: 15px;
     }
+
     .stat-pill {
-      background: rgba(11, 12, 16, 0.7);
-      border: 1px solid #2f3e46;
+      background: rgba(5, 7, 9, 0.8);
+      border: 1px solid #1f2833;
       border-radius: 8px;
       padding: 8px 10px;
       font-size: 0.8rem;
@@ -297,36 +355,50 @@
       gap: 8px;
       margin-bottom: 15px;
     }
+
     .screenshot-thumb {
       width: 100%;
       height: 65px;
       object-fit: cover;
       border-radius: 6px;
-      border: 1px solid #2f3e46;
+      border: 1px solid #1f2833;
       cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .screenshot-thumb:hover {
+      transform: scale(1.05);
+      border-color: #66fcf1;
     }
 
     .specs-btn {
       width: 100%;
-      padding: 8px;
+      padding: 9px;
       margin-bottom: 15px;
-      background: rgba(17, 22, 29, 0.9);
+      background: rgba(5, 7, 9, 0.9);
       border: 1px dashed #66fcf1;
       color: #66fcf1;
       border-radius: 8px;
       font-size: 0.85rem;
       font-weight: bold;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    /* Reviews Section */
+    .specs-btn:hover {
+      background: rgba(102, 252, 241, 0.1);
+      box-shadow: 0 0 15px rgba(102, 252, 241, 0.3);
+    }
+
+    /* Review System */
     .review-section {
-      background: rgba(17, 22, 29, 0.85);
-      border: 1px solid #2f3e46;
+      background: rgba(5, 7, 9, 0.85);
+      border: 1px solid #1f2833;
       border-radius: 10px;
       padding: 15px;
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
+
     .star-rating {
       display: flex;
       gap: 6px;
@@ -334,27 +406,94 @@
       cursor: pointer;
       margin-bottom: 8px;
     }
-    .star-rating .star.active { color: #ff9900; }
-    .review-input-row { display: flex; gap: 8px; margin-bottom: 8px; }
-    .review-name-input { width: 35%; background: #0b0c10; border: 1px solid #2f3e46; border-radius: 6px; padding: 6px; color: #fff; font-size: 0.8rem; }
-    .review-input { width: 65%; background: #0b0c10; border: 1px solid #2f3e46; border-radius: 6px; padding: 6px; color: #fff; font-size: 0.8rem; }
-    .submit-review-btn { background: #ff9900; color: #000; border: none; padding: 8px; font-weight: bold; border-radius: 6px; font-size: 0.8rem; cursor: pointer; width: 100%; }
 
-    .review-list { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; max-height: 100px; overflow-y: auto; }
-    .single-review { background: rgba(11, 12, 16, 0.7); border-left: 3px solid #66fcf1; padding: 6px 8px; font-size: 0.75rem; }
+    .star-rating .star.active {
+      color: #ff9900;
+      text-shadow: 0 0 8px #ff9900;
+    }
+
+    .review-input-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .review-name-input {
+      width: 35%;
+      background: #050709;
+      border: 1px solid #1f2833;
+      border-radius: 6px;
+      padding: 7px;
+      color: #fff;
+      font-size: 0.8rem;
+      outline: none;
+    }
+
+    .review-input {
+      width: 65%;
+      background: #050709;
+      border: 1px solid #1f2833;
+      border-radius: 6px;
+      padding: 7px;
+      color: #fff;
+      font-size: 0.8rem;
+      outline: none;
+    }
+
+    .submit-review-btn {
+      background: #ff9900;
+      color: #050709;
+      border: none;
+      padding: 8px;
+      font-weight: 800;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 0 10px rgba(255, 153, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .submit-review-btn:hover {
+      box-shadow: 0 0 20px #ff9900;
+    }
+
+    .review-list {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 100px;
+      overflow-y: auto;
+    }
+
+    .single-review {
+      background: rgba(11, 12, 16, 0.8);
+      border-left: 3px solid #66fcf1;
+      padding: 6px 8px;
+      font-size: 0.75rem;
+    }
 
     .download-btn {
       display: block;
       text-align: center;
       padding: 12px;
       background-color: #66fcf1;
-      color: #0b0c10;
+      color: #050709;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 800;
       border-radius: 8px;
+      box-shadow: 0 0 15px rgba(102, 252, 241, 0.5);
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
     }
 
-    /* Modal System */
+    .download-btn:hover {
+      box-shadow: 0 0 25px #66fcf1, 0 0 45px #66fcf1;
+      transform: scale(1.02);
+    }
+
+    /* Specs Modal */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -363,45 +502,88 @@
       background: rgba(0, 0, 0, 0.85);
       align-items: center; justify-content: center;
     }
+
     .modal-box {
-      background: #11161d;
-      border: 1px solid #66fcf1;
+      background: #0b0c10;
+      border: 1.5px solid #66fcf1;
       border-radius: 12px;
       padding: 25px;
       max-width: 500px;
       width: 90%;
       position: relative;
+      box-shadow: 0 0 35px rgba(102, 252, 241, 0.3);
     }
-    .close-specs { position: absolute; top: 15px; right: 15px; color: #aaa; font-size: 22px; cursor: pointer; }
-    .specs-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 10px; }
-    .specs-table th, .specs-table td { padding: 8px; border-bottom: 1px solid #1f2833; text-align: left; }
-    .specs-table th { color: #ff9900; }
 
+    .close-specs {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: #aaa;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .close-specs:hover { color: #ff9900; }
+
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-top: 10px;
+    }
+
+    .specs-table th, .specs-table td {
+      padding: 8px;
+      border-bottom: 1px solid #1f2833;
+      text-align: left;
+    }
+
+    .specs-table th {
+      color: #ff9900;
+      text-shadow: 0 0 6px rgba(255, 153, 0, 0.4);
+    }
+
+    /* Lightbox Modal */
     .lightbox-modal {
       display: none;
       position: fixed;
       z-index: 999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.92);
       align-items: center; justify-content: center;
     }
-    .lightbox-modal img { max-width: 85%; max-height: 80vh; border-radius: 10px; border: 2px solid #66fcf1; }
 
-    footer { margin-top: 40px; font-size: 0.9rem; color: #666; text-align: center; }
-    footer span { color: #66fcf1; font-weight: bold; }
+    .lightbox-modal img {
+      max-width: 85%;
+      max-height: 80vh;
+      border-radius: 10px;
+      border: 2px solid #66fcf1;
+      box-shadow: 0 0 30px rgba(102, 252, 241, 0.5);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #777;
+      text-align: center;
+    }
+
+    footer span {
+      color: #66fcf1;
+      font-weight: bold;
+      text-shadow: 0 0 8px rgba(102, 252, 241, 0.4);
+    }
   </style>
 </head>
 <body>
 
   <canvas id="particle-canvas"></canvas>
 
-  <!-- Navigation Bar -->
   <header>
     <div class="logo">AA Studio</div>
     <button class="menu-trigger" onclick="toggleDrawer()">☰ Menu</button>
   </header>
 
-  <!-- Side Menu Drawer -->
   <div class="side-drawer" id="sideDrawer">
     <span class="close-drawer" onclick="toggleDrawer()">&times;</span>
     
@@ -418,22 +600,18 @@
     </ul>
   </div>
 
-  <!-- Hero Screen (Clean Landing) -->
   <div class="hero-container" id="heroScreen">
-    <img src="banner.jpg" alt="Studio Banner" class="hero-bg-img">
-    <!-- Baad me video ke liye: <video class="hero-bg-video" autoplay loop muted src="trailer.mp4"></video> -->
+    <img src="banner.jpg" alt="Studio Banner" class="hero-bg-media">
     
     <div class="hero-overlay">
       <h1>AA Production Studio</h1>
       <p>Official Gaming Portal Developed by Abhishek & Abeer</p>
-      <button class="menu-trigger" style="padding: 12px 30px; font-size: 1rem;" onclick="openCatalogView()">Explore Games Catalog</button>
+      <button class="explore-btn" onclick="openCatalogView()">Explore Games</button>
     </div>
   </div>
 
-  <!-- Games Catalog Section -->
   <div class="main-content" id="catalogScreen">
     
-    <!-- Search & Filter Bar -->
     <div class="filter-container">
       <input type="text" id="gameSearch" placeholder="Search games by title..." onkeyup="searchGames()">
       <div class="filter-buttons">
@@ -443,15 +621,13 @@
       </div>
     </div>
 
-    <!-- Cards Container -->
     <div class="games-grid" id="gamesGrid">
       
-      <!-- GAME 1 (PC) -->
       <div class="card" data-category="pc">
         <div>
           <div class="badge">LIVE DOWNLOAD</div>
           <div class="game-title">Project Alpha (PC)</div>
-          <p style="color:#c5c6c7; font-size:0.9rem; margin-bottom:12px;">3D Unity Game built for high performance PC gaming.</p>
+          <p style="color:#c5c6c7; font-size:0.9rem; margin-bottom:12px;">3D Unity Action Game built for high-performance PC gaming.</p>
           
           <div class="stats-grid">
             <div class="stat-pill">⚡ Ver: <strong>v1.0.2</strong></div>
@@ -468,9 +644,8 @@
 
           <button class="specs-btn" onclick="openSpecsModal('Project Alpha', 'Win 10/11', 'Core i3 6th Gen', '4 GB', 'Intel HD 620', 'Win 11', 'Core i5', '8 GB', 'GTX 1050')">⚙️ System Specs</button>
 
-          <!-- Discord Review System -->
           <div class="review-section">
-            <h4 style="color:#66fcf1; font-size:0.85rem; margin-bottom:6px;">⭐ Player Reviews</h4>
+            <h4 style="color:#66fcf1; font-size:0.85rem; margin-bottom:6px; text-shadow:0 0 6px rgba(102,252,241,0.4);">⭐ Player Reviews</h4>
             <div class="star-rating" id="starContainer">
               <span class="star active" onclick="setRating(1)">★</span>
               <span class="star active" onclick="setRating(2)">★</span>
@@ -493,10 +668,9 @@
         <a href="APNA_GOOGLE_DRIVE_LINK_HERE" target="_blank" class="download-btn">⬇️ Download Game</a>
       </div>
 
-      <!-- GAME 2 (Upcoming) -->
       <div class="card" data-category="upcoming">
         <div>
-          <div class="badge" style="background:#ff3366; color:#fff;">COMING SOON</div>
+          <div class="badge" style="background:#ff3366; color:#fff; box-shadow: 0 0 12px rgba(255, 51, 102, 0.6);">COMING SOON</div>
           <div class="game-title">Project Beta (Upcoming)</div>
           <p style="color:#c5c6c7; font-size:0.9rem; margin-bottom:12px;">Next-gen story-driven game in active development.</p>
           
@@ -509,7 +683,7 @@
 
           <button class="specs-btn" onclick="openSpecsModal('Project Beta', 'Win 10/11', 'Core i5 8th Gen', '8 GB', 'GTX 1060', 'Win 11', 'Core i7', '16 GB', 'RTX 3060')">⚙️ Target Specs</button>
         </div>
-        <a href="#" class="download-btn" style="background:#333; color:#666; cursor:not-allowed;">🔒 Coming Soon</a>
+        <a href="#" class="download-btn" style="background:#1f2833; color:#777; box-shadow:none; cursor:not-allowed;">🔒 Coming Soon</a>
       </div>
 
     </div>
@@ -517,11 +691,10 @@
     <footer>Created By <span>Abhishek & Abeer</span></footer>
   </div>
 
-  <!-- Specs Modal -->
   <div class="modal-overlay" id="specsModal" onclick="closeSpecsModal()">
     <div class="modal-box" onclick="event.stopPropagation();">
       <span class="close-specs" onclick="closeSpecsModal()">&times;</span>
-      <h3 id="specsGameTitle" style="color:#66fcf1; margin-bottom:10px;">System Requirements</h3>
+      <h3 id="specsGameTitle" style="color:#66fcf1; margin-bottom:10px; text-shadow: 0 0 8px #66fcf1;">System Requirements</h3>
       <table class="specs-table">
         <thead>
           <tr><th>Component</th><th>Minimum</th><th>Recommended</th></tr>
@@ -536,13 +709,12 @@
     </div>
   </div>
 
-  <!-- Lightbox Modal -->
   <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
     <img id="lightboxImg" src="">
   </div>
 
   <script>
-    /* Side Menu Drawer Toggle */
+    /* Navigation Functions */
     function toggleDrawer() {
       document.getElementById('sideDrawer').classList.toggle('open');
     }
@@ -550,7 +722,7 @@
     function openHomeScreen() {
       document.getElementById('heroScreen').style.display = 'flex';
       document.getElementById('catalogScreen').style.display = 'none';
-      toggleDrawer();
+      if(document.getElementById('sideDrawer').classList.contains('open')) toggleDrawer();
     }
 
     function openCatalogView() {
@@ -573,7 +745,7 @@
       });
     }
 
-    /* Category Filter & Live Search */
+    /* Filtering & Search */
     function filterCategory(category, element) {
       const buttons = document.querySelectorAll('.filter-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
@@ -603,7 +775,7 @@
       });
     }
 
-    /* Rating & Review System */
+    /* Star Rating & Review System */
     let currentRating = 5;
     function setRating(rating) {
       currentRating = rating;
@@ -669,7 +841,7 @@
     function openLightbox(src) { document.getElementById('lightboxImg').src = src; document.getElementById('lightboxModal').style.display = 'flex'; }
     function closeLightbox() { document.getElementById('lightboxModal').style.display = 'none'; }
 
-    /* Particles Canvas */
+    /* Floating Particles Background */
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
