@@ -25,7 +25,7 @@
     /* Top Banner */
     .banner-container {
       width: 100%;
-      max-width: 800px;
+      max-width: 900px;
       margin-top: 20px;
       padding: 0 15px;
     }
@@ -36,116 +36,116 @@
       border-radius: 12px;
       border: 1px solid rgba(0, 255, 204, 0.3);
       box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    .banner-img:hover {
-      transform: scale(1.01);
-      box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
     }
 
-    /* Main Content Card */
-    .card {
-      background: #1f2833;
-      padding: 30px 25px;
-      border-radius: 16px;
-      border: 1px solid #45a29e;
-      max-width: 800px;
-      width: calc(100% - 30px);
-      margin-top: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      animation: fadeIn 1s ease-in-out;
+    /* Studio Header */
+    .studio-header {
+      margin-top: 25px;
+      margin-bottom: 10px;
     }
-
     h1 {
       color: #66fcf1;
-      font-size: 2rem;
-      margin-bottom: 10px;
+      font-size: 2.2rem;
       text-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
+    }
+    .section-title {
+      color: #ff9900;
+      font-size: 1.4rem;
+      margin: 25px 0 15px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Games Grid Layout (2 Games Side-by-Side) */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
+      max-width: 900px;
+      width: calc(100% - 30px);
+      margin-top: 10px;
+    }
+
+    /* Individual Game Card */
+    .card {
+      background: #1f2833;
+      padding: 25px 20px;
+      border-radius: 16px;
+      border: 1px solid #45a29e;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
     }
 
     .badge {
       background: #ff9900;
       color: #000;
-      padding: 6px 14px;
+      padding: 4px 10px;
       font-weight: bold;
-      border-radius: 20px;
-      font-size: 0.8rem;
+      border-radius: 15px;
+      font-size: 0.75rem;
       display: inline-block;
-      margin-bottom: 20px;
-      animation: pulse 2s infinite;
+      margin-bottom: 10px;
+      align-self: flex-start;
+    }
+
+    .game-title {
+      color: #66fcf1;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
     }
 
     p {
       color: #c5c6c7;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    /* System Requirements Section */
-    .req-section {
-      margin-top: 30px;
-      text-align: left;
-      background: #11161d;
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid #2f3e46;
-    }
-    .req-title {
-      color: #66fcf1;
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-      text-align: center;
-      border-bottom: 1px solid #2f3e46;
-      padding-bottom: 8px;
-    }
-    .req-table {
-      width: 100%;
-      border-collapse: collapse;
       font-size: 0.9rem;
-    }
-    .req-table th, .req-table td {
-      padding: 10px;
-      border-bottom: 1px solid #222d37;
-    }
-    .req-table th {
-      color: #ff9900;
-      width: 30%;
-    }
-    .req-table td {
-      color: #c5c6c7;
+      line-height: 1.5;
+      margin-bottom: 15px;
     }
 
-    /* Download Button */
+    /* Requirements Box */
+    .req-box {
+      background: #11161d;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #2f3e46;
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-bottom: 15px;
+    }
+
     .download-btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 28px;
+      display: block;
+      text-align: center;
+      padding: 12px;
       background-color: #66fcf1;
       color: #0b0c10;
       text-decoration: none;
       font-weight: bold;
       border-radius: 8px;
-      font-size: 1.1rem;
-      box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+      font-size: 1rem;
       transition: all 0.3s ease;
     }
     .download-btn:hover {
       background-color: #45a29e;
       color: #ffffff;
-      transform: translateY(-4px);
-      box-shadow: 0 0 25px rgba(102, 252, 241, 0.8);
+      box-shadow: 0 0 15px rgba(102, 252, 241, 0.6);
     }
 
-    /* Social Media Links Section */
-    .social-section {
-      margin-top: 30px;
-      padding-top: 20px;
-      border-top: 1px dashed #2f3e46;
+    /* Disabled Button For Upcoming Games */
+    .download-btn.disabled {
+      background-color: #333;
+      color: #777;
+      cursor: not-allowed;
+      pointer-events: none;
     }
-    .social-section h3 {
-      color: #66fcf1;
-      font-size: 1.1rem;
-      margin-bottom: 15px;
+
+    /* Social Links */
+    .social-section {
+      margin-top: 40px;
+      max-width: 900px;
+      width: calc(100% - 30px);
     }
     .social-links {
       display: flex;
@@ -154,9 +154,6 @@
       flex-wrap: wrap;
     }
     .social-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
       padding: 8px 16px;
       border-radius: 6px;
       text-decoration: none;
@@ -165,105 +162,90 @@
       color: #ffffff;
       background: #11161d;
       border: 1px solid #2f3e46;
-      transition: all 0.3s ease;
     }
-    .social-btn.youtube:hover { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 10px rgba(255, 0, 0, 0.4); }
-    .social-btn.discord:hover { border-color: #5865f2; color: #5865f2; box-shadow: 0 0 10px rgba(88, 101, 242, 0.4); }
-    .social-btn.instagram:hover { border-color: #e1306c; color: #e1306c; box-shadow: 0 0 10px rgba(225, 48, 108, 0.4); }
 
     footer {
-      margin-top: 30px;
+      margin-top: 40px;
       font-size: 0.9rem;
       color: #666;
-      border-top: 1px solid #2f3e46;
-      padding-top: 15px;
     }
     footer span {
       color: #66fcf1;
       font-weight: bold;
     }
 
-    /* Keyframe Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.7); }
-      70% { box-shadow: 0 0 0 10px rgba(255, 153, 0, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0); }
-    }
-
-    /* Mobile View */
     @media (max-width: 480px) {
+      .games-grid { grid-template-columns: 1fr; }
       .banner-img { height: 130px; }
-      h1 { font-size: 1.5rem; }
-      .download-btn { width: 100%; }
-      .req-table th, .req-table td { font-size: 0.8rem; padding: 8px; }
-      .social-links { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Banner -->
+  <!-- Banner -->
   <div class="banner-container">
     <img src="banner.jpg" alt="AA Production Studio Banner" class="banner-img">
   </div>
 
-  <!-- Content Card -->
-  <div class="card">
+  <div class="studio-header">
     <h1>AA Production Studio</h1>
-    <div class="badge">⚠️ Under Development</div>
-
-    <p>We are creating awesome gaming experiences. Download our PC game below!</p>
-
-    <!-- System Requirements Table -->
-    <div class="req-section">
-      <div class="req-title">⚙️ Minimum System Requirements</div>
-      <table class="req-table">
-        <tr>
-          <th>OS</th>
-          <td>Windows 10 / 11 (64-bit)</td>
-        </tr>
-        <tr>
-          <th>Processor</th>
-          <td>Intel Core i3 / AMD Ryzen 3</td>
-        </tr>
-        <tr>
-          <th>RAM</th>
-          <td>4 GB RAM</td>
-        </tr>
-        <tr>
-          <th>Graphics</th>
-          <td>Intel HD 4000 / NVIDIA GT 710 or higher</td>
-        </tr>
-        <tr>
-          <th>Storage</th>
-          <td>1.5 GB Available Space</td>
-        </tr>
-      </table>
-    </div>
-
-    <!-- Download Link -->
-    <a href="https://drive.google.com/file/d/1-O27TnKqxG3m2ZmEtYWOTesRBk1x3sgH/view" target="_blank" class="download-btn">
-      ⬇️ Spiderman Reloaded (PC)
-    </a>
-
-    <!-- Social Media & Discord Section -->
-    <div class="social-section">
-      <h3>🌐 Join Our Community</h3>
-      <div class="social-links">
-        <a href="Coming Soon" target="_blank" class="social-btn youtube">▶️ YouTube</a>
-        <a href="https://discord.gg/ErCVt9JPHN" target="_blank" class="social-btn discord">💬 Discord</a>
-        <a href="Coming Soon" target="_blank" class="social-btn instagram">📸 Instagram</a>
-      </div>
-    </div>
-
-    <footer>
-      Created By <span>Abhishek & Abeer</span>
-    </footer>
   </div>
+
+  <div class="section-title">🎮 Our Games</div>
+
+  <!-- Games Grid Container -->
+  <div class="games-grid">
+
+    <!-- GAME 1 (Current Game) -->
+    <div class="card">
+      <div>
+        <div class="badge">LIVE DOWNLOAD</div>
+        <div class="game-title">Project Alpha (PC)</div>
+        <p>Our featured 3D Unity action/adventure game. Download and play on PC!</p>
+        
+        <div class="req-box">
+          <strong>Min Requirements:</strong><br>
+          Win 10/11 | 4GB RAM | i3 Proc | 1.5GB Space
+        </div>
+      </div>
+
+      <a href="APNA_GOOGLE_DRIVE_LINK_HERE" target="_blank" class="download-btn">
+        ⬇️ Download Game
+      </a>
+    </div>
+
+    <!-- GAME 2 (Upcoming Game) -->
+    <div class="card">
+      <div>
+        <div class="badge" style="background:#ff3366; color:#fff;">COMING SOON</div>
+        <div class="game-title">Project Beta (Upcoming)</div>
+        <p>Next-gen story-driven game currently in active development by Abhishek & Abeer.</p>
+        
+        <div class="req-box">
+          <strong>Status:</strong><br>
+          Level Design & Gameplay Mechanics Phase
+        </div>
+      </div>
+
+      <a href="#" class="download-btn disabled">
+        🔒 Coming Soon
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Social Media Section -->
+  <div class="social-section">
+    <div class="social-links">
+      <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-btn">▶️ YouTube</a>
+      <a href="YOUR_DISCORD_LINK" target="_blank" class="social-btn">💬 Discord</a>
+      <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-btn">📸 Instagram</a>
+    </div>
+  </div>
+
+  <footer>
+    Created By <span>Abhishek & Abeer</span>
+  </footer>
 
 </body>
 </html>
