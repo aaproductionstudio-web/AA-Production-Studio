@@ -13,109 +13,130 @@
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      background-color: #121212;
+      background-color: #0b0c10;
       color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding-bottom: 30px;
+      padding-bottom: 40px;
     }
 
-    /* Top YouTube-Style Banner Container */
+    /* Top Banner (YouTube Style) with Glow Animation */
     .banner-container {
       width: 100%;
-      max-width: 800px; /* Card se thoda chauda ya fit rakhne ke liye */
+      max-width: 800px;
       margin-top: 20px;
       padding: 0 15px;
     }
     .banner-img {
       width: 100%;
-      height: 180px; /* PC par height */
+      height: 200px;
       object-fit: cover;
       border-radius: 12px;
-      border: 1px solid #333;
-      box-shadow: 0 4px 15px rgba(0, 255, 204, 0.2);
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .banner-img:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
     }
 
-    /* Main Content Card */
+    /* Main Content Card with Entrance Animation */
     .card {
-      background: #1e1e1e;
-      padding: 25px 20px;
+      background: #1f2833;
+      padding: 30px 25px;
       border-radius: 16px;
-      border: 1px solid #333;
+      border: 1px solid #45a29e;
       max-width: 800px;
       width: calc(100% - 30px);
-      margin-top: 15px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      margin-top: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 1s ease-in-out;
     }
 
     h1 {
-      color: #00ffcc;
-      font-size: 1.8rem;
+      color: #66fcf1;
+      font-size: 2rem;
       margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
     }
 
+    /* Animated Badge */
     .badge {
       background: #ff9900;
       color: #000;
-      padding: 5px 12px;
+      padding: 6px 14px;
       font-weight: bold;
       border-radius: 20px;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       display: inline-block;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
     }
 
     p {
-      color: #ccc;
-      font-size: 0.95rem;
-      line-height: 1.5;
+      color: #c5c6c7;
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
+    /* Glowing Download Button with Smooth Hover */
     .download-btn {
       display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      background-color: #00ffcc;
-      color: #000;
+      margin-top: 25px;
+      padding: 14px 28px;
+      background-color: #66fcf1;
+      color: #0b0c10;
       text-decoration: none;
       font-weight: bold;
       border-radius: 8px;
-      font-size: 1rem;
-      transition: all 0.2s ease;
+      font-size: 1.1rem;
+      box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+      transition: all 0.3s ease;
     }
     .download-btn:hover {
-      background-color: #00cc99;
-      transform: translateY(-2px);
+      background-color: #45a29e;
+      color: #ffffff;
+      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(102, 252, 241, 0.8);
     }
 
     footer {
-      margin-top: 25px;
-      font-size: 0.85rem;
-      color: #777;
-      border-top: 1px solid #2a2a2a;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #666;
+      border-top: 1px solid #2f3e46;
       padding-top: 15px;
     }
     footer span {
-      color: #00ffcc;
+      color: #66fcf1;
       font-weight: bold;
     }
 
-    /* Mobile view ke liye auto-height adjustment */
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 153, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0); }
+    }
+
+    /* Mobile Responsive View */
     @media (max-width: 480px) {
-      .banner-img {
-        height: 120px; /* Mobile par banner ki height thodi kam ho jayegi */
-      }
-      h1 {
-        font-size: 1.4rem;
-      }
+      .banner-img { height: 130px; }
+      h1 { font-size: 1.5rem; }
+      .download-btn { width: 100%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Banner (YouTube Style) -->
+  <!-- Glowing Top Banner -->
   <div class="banner-container">
     <img src="banner.jpg" alt="AA Production Studio Banner" class="banner-img">
   </div>
@@ -127,7 +148,7 @@
 
     <p>We are creating awesome gaming experiences. Download our PC game below!</p>
 
-    <!-- Google Drive Download Link -->
+    <!-- Google Drive Download Button -->
     <a href="https://drive.google.com/file/d/1-O27TnKqxG3m2ZmEtYWOTesRBk1x3sgH/view" target="_blank" class="download-btn">
       ⬇️ Spiderman Reloaded (PC)
     </a>
