@@ -572,6 +572,7 @@
 
     <div class="games-grid" id="gamesGrid">
       
+      <!-- GAME 1 -->
       <div class="card" onclick="openGame(this)">
         <div>
           <div class="badge">LIVE DOWNLOAD</div>
@@ -585,6 +586,7 @@
             <div class="stat-pill">👥 <span>Downloads: <strong>1.2k+</strong></span></div>
           </div>
 
+          <!-- Screenshots -->
           <div class="screenshots-container">
             <div class="screenshots-title">📸 Gameplay In-Game Shots:</div>
             <div class="screenshots-grid">
@@ -594,10 +596,12 @@
             </div>
           </div>
 
+          <!-- Can I Run It Button -->
           <button class="specs-btn" onclick="openSpecsModal('Project Alpha', 'Win 10/11', 'Intel Core i3 6th Gen', '4 GB', 'Intel HD 620', 'Win 11', 'Intel Core i5 / Ryzen 5', '8 GB', 'GTX 1050 / RX 560'); event.stopPropagation();">
             ⚙️ Can I Run It? (System Specs)
           </button>
 
+          <!-- Star Rating & Community Reviews -->
           <div class="review-section" onclick="event.stopPropagation();">
             <h4>⭐ Player Reviews & Rating</h4>
             
@@ -632,6 +636,7 @@
         </a>
       </div>
 
+      <!-- GAME 2 -->
       <div class="card" onclick="openGame(this)">
         <div>
           <div class="badge" style="background:#ff3366; color:#fff; animation:none;">COMING SOON</div>
@@ -656,6 +661,7 @@
 
     </div>
 
+    <!-- Extra Section -->
     <div class="extra-section" id="extraSection">
       <div class="info-card">
         <h3>🚀 Studio Roadmap</h3>
@@ -696,6 +702,7 @@
     </footer>
   </div>
 
+  <!-- System Specs Modal -->
   <div class="modal-overlay" id="specsModal" onclick="closeSpecsModal()">
     <div class="modal-box" onclick="event.stopPropagation();">
       <span class="close-specs" onclick="closeSpecsModal()">&times;</span>
@@ -735,13 +742,14 @@
     </div>
   </div>
 
+  <!-- Lightbox Modal -->
   <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
     <span class="close-modal">&times;</span>
     <img id="lightboxImg" src="" alt="Screenshot Full View">
   </div>
 
   <script>
-    /* Rating & Review Script */
+    /* Rating & Review Script + DISCORD WEBHOOK INTEGRATION */
     let currentRating = 5;
 
     function setRating(rating) {
@@ -756,10 +764,10 @@
       });
     }
 
-    function submitReview() {
+    async function submitReview() {
       const nameInput = document.getElementById('userNameInput');
       const textInput = document.getElementById('userReviewText');
-      const name = nameInput.value.trim() || 'Player';
+      const name = nameInput.value.trim() || 'Anonymous Player';
       const text = textInput.value.trim();
 
       if (!text) {
@@ -767,14 +775,47 @@
         return;
       }
 
+      // 1. Local Screen Par Instant Show Hoga
       const reviewsContainer = document.getElementById('reviewsContainer');
       const newReview = document.createElement('div');
       newReview.className = 'single-review';
       
       let starStr = '★'.repeat(currentRating) + '☆'.repeat(5 - currentRating);
       newReview.innerHTML = `<strong>${name}:</strong> ${text}<span class="review-stars">${starStr}</span>`;
-
       reviewsContainer.prepend(newReview);
+
+      // 2. DISCORD WEBHOOK SENDING SYSTEM
+      const discordWebhookURL = "https://discord.com/api/webhooks/1543538976294441012/E2chNliSSZDn1wuzlio74vJoc_1SzTnK_awdqOEbnIRwNUW8jaIsRAh_xDFilfES2A6i"; 
+
+      if (discordWebhookURL !== "https://discord.com/api/webhooks/1543538976294441012/E2chNliSSZDn1wuzlio74vJoc_1SzTnK_awdqOEbnIRwNUW8jaIsRAh_xDFilfES2A6i") {
+        const payload = {
+          username: "Website Review Bot",
+          embeds: [{
+            title: "⭐ New Website Review Received!",
+            color: 16750848,
+            fields: [
+              { name: "Player Name", value: name, inline: true },
+              { name: "Rating", value: `${currentRating} / 5 Stars (${starStr})`, inline: true },
+              { name: "Feedback", value: text }
+            ],
+            footer: { text: "AA Production Studio Website" },
+            timestamp: new Date()
+          }]
+        };
+
+        try {
+          await fetch(discordWebhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          alert('Thank you! Your review has been sent to the developers.');
+        } catch (error) {
+          console.error("Error sending review to Discord:", error);
+        }
+      } else {
+        alert('Review added! (Discord Webhook link is pending setup in code)');
+      }
 
       textInput.value = '';
       nameInput.value = '';
