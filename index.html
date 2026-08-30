@@ -15,19 +15,36 @@
       text-align: center;
       background-color: #0b0c10;
       color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Background Particle Canvas */
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Main Content Wrapper */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      padding-bottom: 40px;
+      padding: 20px 15px 40px;
     }
 
     /* Top Banner with Glow */
     .banner-container {
       width: 100%;
       max-width: 900px;
-      margin-top: 20px;
-      padding: 0 15px;
     }
     .banner-img {
       width: 100%;
@@ -68,14 +85,15 @@
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 25px;
       max-width: 900px;
-      width: calc(100% - 30px);
+      width: 100%;
       margin-top: 10px;
       animation: fadeIn 0.8s ease-in-out;
     }
 
     /* Individual Clickable Game Card */
     .card {
-      background: #1f2833;
+      background: rgba(31, 40, 51, 0.85);
+      backdrop-filter: blur(8px);
       padding: 25px 20px;
       border-radius: 16px;
       border: 1px solid #45a29e;
@@ -92,7 +110,7 @@
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(102, 252, 241, 0.5);
     }
 
-    /* Full View Mode jab card click hoga */
+    /* Full View Mode */
     .games-grid.single-mode {
       display: flex;
       justify-content: center;
@@ -133,7 +151,7 @@
     }
 
     .req-box {
-      background: #11161d;
+      background: rgba(17, 22, 29, 0.8);
       padding: 12px;
       border-radius: 8px;
       border: 1px solid #2f3e46;
@@ -194,7 +212,7 @@
     .social-section {
       margin-top: 40px;
       max-width: 900px;
-      width: calc(100% - 30px);
+      width: 100%;
     }
     .social-links {
       display: flex;
@@ -209,7 +227,7 @@
       font-size: 0.9rem;
       font-weight: bold;
       color: #ffffff;
-      background: #11161d;
+      background: rgba(17, 22, 29, 0.8);
       border: 1px solid #2f3e46;
       transition: all 0.3s ease;
     }
@@ -227,7 +245,7 @@
       font-weight: bold;
     }
 
-    /* Keyframe Animations */
+    /* Keyframes */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(15px); }
       to { opacity: 1; transform: translateY(0); }
@@ -247,90 +265,78 @@
 </head>
 <body>
 
-  <!-- Top Banner -->
-  <div class="banner-container">
-    <img src="banner.jpg" alt="AA Production Studio Banner" class="banner-img">
-  </div>
+  <canvas id="particle-canvas"></canvas>
 
-  <div class="studio-header">
-    <h1>AA Production Studio</h1>
-  </div>
+  <div class="content-wrapper">
+    <div class="banner-container">
+      <img src="banner.jpg" alt="AA Production Studio Banner" class="banner-img">
+    </div>
 
-  <div class="section-title" id="sectionTitle">🎮 Our Games</div>
+    <div class="studio-header">
+      <h1>AA Production Studio</h1>
+    </div>
 
-  <!-- Back Button (Initially Hidden) -->
-  <button class="back-btn" id="backBtn" onclick="resetView()">⬅️ Back to All Games</button>
+    <div class="section-title" id="sectionTitle">🎮 Our Games</div>
 
-  <!-- Games Grid Container -->
-  <div class="games-grid" id="gamesGrid">
+    <button class="back-btn" id="backBtn" onclick="resetView()">⬅️ Back to All Games</button>
 
-    <!-- GAME 1 -->
-    <div class="card" onclick="openGame(this)">
-      <div>
-        <div class="badge">LIVE DOWNLOAD</div>
-        <div class="game-title">Project Alpha (PC)</div>
-        <p>Our featured 3D Unity game. Download and play directly on PC!</p>
-        
-        <div class="req-box">
-          <strong>Min Requirements:</strong><br>
-          Win 10/11 | 4GB RAM | i3 Proc | 1.5GB Space
+    <div class="games-grid" id="gamesGrid">
+      <div class="card" onclick="openGame(this)">
+        <div>
+          <div class="badge">LIVE DOWNLOAD</div>
+          <div class="game-title">Project Alpha (PC)</div>
+          <p>Our featured 3D Unity game. Download and play directly on PC!</p>
+          <div class="req-box">
+            <strong>Min Requirements:</strong><br>
+            Win 10/11 | 4GB RAM | i3 Proc | 1.5GB Space
+          </div>
         </div>
+        <a href="APNA_GOOGLE_DRIVE_LINK_HERE" target="_blank" class="download-btn" onclick="event.stopPropagation();">
+          ⬇️ Download Game
+        </a>
       </div>
 
-      <a href="APNA_GOOGLE_DRIVE_LINK_HERE" target="_blank" class="download-btn" onclick="event.stopPropagation();">
-        ⬇️ Download Game
-      </a>
-    </div>
-
-    <!-- GAME 2 -->
-    <div class="card" onclick="openGame(this)">
-      <div>
-        <div class="badge" style="background:#ff3366; color:#fff; animation:none;">COMING SOON</div>
-        <div class="game-title">Project Beta (Upcoming)</div>
-        <p>Next-gen story-driven game currently in active development by Abhishek & Abeer.</p>
-        
-        <div class="req-box">
-          <strong>Status:</strong><br>
-          Level Design & Gameplay Mechanics Phase
+      <div class="card" onclick="openGame(this)">
+        <div>
+          <div class="badge" style="background:#ff3366; color:#fff; animation:none;">COMING SOON</div>
+          <div class="game-title">Project Beta (Upcoming)</div>
+          <p>Next-gen story-driven game currently in active development by Abhishek & Abeer.</p>
+          <div class="req-box">
+            <strong>Status:</strong><br>
+            Level Design & Gameplay Mechanics Phase
+          </div>
         </div>
+        <a href="#" class="download-btn disabled" onclick="event.stopPropagation();">
+          🔒 Coming Soon
+        </a>
       </div>
-
-      <a href="#" class="download-btn disabled" onclick="event.stopPropagation();">
-        🔒 Coming Soon
-      </a>
     </div>
 
-  </div>
-
-  <!-- Glowing Social Links -->
-  <div class="social-section">
-    <div class="social-links">
-      <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-btn youtube">▶️ YouTube</a>
-      <a href="YOUR_DISCORD_LINK" target="_blank" class="social-btn discord">💬 Discord</a>
-      <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-btn instagram">📸 Instagram</a>
+    <div class="social-section">
+      <div class="social-links">
+        <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-btn youtube">▶️ YouTube</a>
+        <a href="YOUR_DISCORD_LINK" target="_blank" class="social-btn discord">💬 Discord</a>
+        <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-btn instagram">📸 Instagram</a>
+      </div>
     </div>
+
+    <footer>
+      Created By <span>Abhishek & Abeer</span>
+    </footer>
   </div>
 
-  <footer>
-    Created By <span>Abhishek & Abeer</span>
-  </footer>
-
-  <!-- JavaScript for Click Interaction -->
   <script>
+    /* Card Toggle Logic */
     function openGame(selectedCard) {
       const allCards = document.querySelectorAll('.card');
       const grid = document.getElementById('gamesGrid');
       const backBtn = document.getElementById('backBtn');
       const sectionTitle = document.getElementById('sectionTitle');
 
-      // Hide all other cards
       allCards.forEach(card => {
-        if (card !== selectedCard) {
-          card.style.display = 'none';
-        }
+        if (card !== selectedCard) card.style.display = 'none';
       });
 
-      // Style selected card to show single mode
       grid.classList.add('single-mode');
       backBtn.style.display = 'inline-block';
       sectionTitle.innerText = '🎮 Game Details';
@@ -342,16 +348,95 @@
       const backBtn = document.getElementById('backBtn');
       const sectionTitle = document.getElementById('sectionTitle');
 
-      // Show all cards again
       allCards.forEach(card => {
         card.style.display = 'flex';
       });
 
-      // Reset styles
       grid.classList.remove('single-mode');
       backBtn.style.display = 'none';
       sectionTitle.innerText = '🎮 Our Games';
     }
+
+    /* Particle Animation Engine */
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let particlesArray = [];
+    const colors = ['#66fcf1', '#45a29e', '#ff9900'];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.8;
+        this.speedY = (Math.random() - 0.5) * 0.8;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    function initParticles() {
+      particlesArray = [];
+      const numberOfParticles = Math.floor((canvas.width * canvas.height) / 14000);
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function connectParticles() {
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          let dist = ((particlesArray[a].x - particlesArray[b].x) ** 2) + ((particlesArray[a].y - particlesArray[b].y) ** 2);
+          if (dist < 10000) {
+            let opacity = 1 - (dist / 10000);
+            ctx.strokeStyle = `rgba(102, 252, 241, ${opacity * 0.25})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+      }
+      connectParticles();
+      requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
   </script>
 
 </body>
