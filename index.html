@@ -910,16 +910,61 @@
     }
 
     /* Star Rating & Review System */
-    let currentRating = 5;
-    function setRating(rating) {
-      currentRating = rating;
-      const stars = document.querySelectorAll('#starContainer .star');
-      stars.forEach((star, idx) => {
-        star.classList.toggle('active', idx < rating);
-      });
-    }
+    /* --- YAHAN REPLACE KAREIN --- */
+async function submitReview() {
+  const nameInput = document.getElementById('userNameInput');
+  const textInput = document.getElementById('userReviewText');
+  const name = nameInput.value.trim() || 'Anonymous Player';
+  const text = textInput.value.trim();
 
-    function submitReview() {
+  if (!text) {
+    alert('Please enter a review message!');
+    return;
+  }
+
+  // 1. Website screen par review show karega
+  const reviewsContainer = document.getElementById('reviewsContainer');
+  const newReview = document.createElement('div');
+  newReview.className = 'single-review';
+  let starStr = '★'.repeat(currentRating) + '☆'.repeat(5 - currentRating);
+  newReview.innerHTML = `<strong>${name}:</strong> ${text} <span style="color:#ff9900;">${starStr}</span>`;
+  reviewsContainer.prepend(newReview);
+
+  // 2. Discord Webhook URL (Yahan apna Discord link daalein)
+  const discordWebhookURL = "https://discord.com/api/webhooks/1543538976294441012/E2chNliSSZDn1wuzlio74vJoc_1SzTnK_awdqOEbnIRwNUW8jaIsRAh_xDFilfES2A6i";
+
+  if (discordWebhookURL.includes("discord.com/api/webhooks/")) {
+    try {
+      await fetch(discordWebhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: "AA Studio Review Bot",
+          embeds: [
+            {
+              title: "⭐ New Game Review!",
+              color: 6749425,
+              fields: [
+                { name: "👤 Player", value: name, inline: true },
+                { name: "⭐ Rating", value: `${currentRating} / 5 Stars`, inline: true },
+                { name: "💬 Review", value: text }
+              ],
+              footer: { text: "AA Production Studio Website" },
+              timestamp: new Date().toISOString()
+            }
+          ]
+        })
+      });
+    } catch (err) {
+      console.error("Discord error:", err);
+    }
+  }
+
+  // Input boxes clear karein
+  textInput.value = '';
+  nameInput.value = '';
+}
+/* ---------------------------- */
       const nameInput = document.getElementById('userNameInput');
       const textInput = document.getElementById('userReviewText');
       const name = nameInput.value.trim() || 'Anonymous Player';
